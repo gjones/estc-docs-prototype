@@ -1,0 +1,102 @@
+files:
+    include: '**/*.scss'
+    ignore:
+          - 'node_modules/**/*.*'
+rules:
+    # Use none instead of 0 for no border
+    border-zero:
+      - 2
+      - convention: 'none'
+    # } else { style on one line, like our JS
+    brace-style:
+      - 2
+      -
+        style: '1tbs'
+    class-name-format: 0
+    clean-import-paths: 0
+    empty-args: 0
+    # Put a line-break between sections of CSS, but allow quicky one-liners for legibility
+    empty-line-between-blocks:
+      - 2
+      -
+        allow-single-line-rulesets: 1
+    extends-before-declarations: 0
+    extends-before-mixins: 0
+    # Files must end with a newline
+    final-newline: 1
+    force-attribute-nesting: 0
+    force-element-nesting: 0
+    force-pseudo-nesting: 0
+    function-name-format: 0
+    hex-length: 0
+    hex-notation:
+      - 1
+      -
+        style: 'uppercase'
+    # 2 spaces for indentation
+    indentation: 2
+    leading-zero: 0
+    mixin-name-format:
+      - 2
+      -
+        allow-leading-underscore: false
+        convention: 'camelcase'
+    mixins-before-declarations: 0
+    nesting-depth: 0
+    no-color-keywords: 1
+    no-color-literals: 0
+    no-css-comments: 0
+    no-debug: 0
+    no-duplicate-properties:
+      - 2
+      -
+        exclude:
+          - 'font-size'
+          - 'word-break'
+          - 'outline'
+    no-empty-rulesets: 0
+    no-extends: 0
+    no-ids: 0
+    no-important: 0
+    no-invalid-hex: 1
+    no-mergeable-selectors: 0
+    no-misspelled-properties:
+      - 1
+      - extra-properties: 'font-named-instance'
+    no-qualifying-elements: 0
+    no-trailing-whitespace: 1
+    no-trailing-zero: 0
+    no-transition-all: 0
+    no-url-domains: 0
+    no-url-protocols: 0
+    no-vendor-prefixes: 0
+    no-warn: 0
+    one-declaration-per-line: 0
+    placeholder-in-extend: 0
+    placeholder-name-format: 0
+    property-sort-order: 0
+    quotes:
+      - 2
+      -
+        style: single
+    shorthand-values: 0
+    single-line-per-selector: 0
+    space-after-bang: 0
+    space-after-colon: 1
+    space-after-comma: 0
+    # ($var / 2) rather than ($var/2)
+    space-around-operator: 1
+    space-before-bang: 0
+    # something { not something{
+    space-before-brace:
+      - 2
+    space-before-colon: 0
+    space-between-parens: 0
+    trailing-semicolon: 1
+    url-quotes: 0
+    variable-for-property: 0
+    variable-name-format:
+      - 2
+      -
+        convention: 'camelcase'
+    zero-unit: 0
