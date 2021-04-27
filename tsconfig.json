@@ -11,6 +11,9 @@
       "dom.iterable",
       "esnext"
     ],
+    "paths": {
+      "@layouts/*": ["./src/components/layouts/*"],
+    }, 
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -24,7 +27,7 @@
     "jsx": "preserve"
   },
   "include": [
-    "./src/**/*"
+    "./src/**/*", "./src/lib/docs.js",
   ],
   "exclude": [
     "node_modules"
