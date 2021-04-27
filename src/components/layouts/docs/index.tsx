@@ -1,6 +1,15 @@
-import React, { Component } from 'react'
-import Page from '../base'
-import styled from 'styled-components'
+import React, { Component, Fragment } from 'react'
+import Header from '../../header'
+
+import {
+  EuiPage,
+  EuiPageContent,
+  EuiPageContentBody,
+  EuiPageHeader,
+  EuiPageSideBar,
+  EuiPageBody,
+  EuiSpacer,
+} from '@elastic/eui'
 
 type Props = {
   title: string
@@ -9,59 +18,32 @@ type Props = {
   children: any
 }
 
-const DocContainer = styled.div`
-  margin: $0;
-  min-height: 80vh;
-
-  time {
-    color: ${(props) => props.theme.text.light};
-  }
-
-  p,
-  ul {
-    color: ${(props) => props.theme.text.default};
-    line-height: 1.5;
-    max-width: 85%;
-
-    a {
-      color: ${(props) => props.theme.text.link};
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-
-  li {
-    margin: ${(props) => props.theme.sizes.sizeM} 0;
-  }
-
-  .left {
-    display: flex;
-    align-items: flex-start;
-    margin: ${(props) => props.theme.sizes.sizeXL} 0;
-    img {
-      max-width: 85%;
-    }
-  }
-
-  .centred {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: ${(props) => props.theme.sizes.sizeXL} 0;
-    img {
-      max-width: 85%;
-    }
-  }
-`
-
 export default class DocPage extends Component<Props> {
   render() {
+    const { title } = this.props
+    let sideNav = <p>Remember to add a sidenav</p>
+
     return (
-      <Page>
-        {this.props.children}
-      </Page>
+      <Fragment>
+        <Header />
+        <EuiPage paddingSize='none'>
+          <EuiPageSideBar sticky>{sideNav}</EuiPageSideBar>
+          <EuiPageBody panelled>
+            <EuiSpacer size='xxl' />
+            <EuiPageHeader restrictWidth pageTitle={title} />
+            <EuiPageContent
+              hasBorder={false}
+              hasShadow={false}
+              paddingSize='none'
+              color='transparent'
+              borderRadius='none'>
+              <EuiPageContentBody restrictWidth>
+                {this.props.children}
+              </EuiPageContentBody>
+            </EuiPageContent>
+          </EuiPageBody>
+        </EuiPage>
+      </Fragment>
     )
   }
 }

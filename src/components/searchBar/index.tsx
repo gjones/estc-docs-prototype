@@ -10,13 +10,18 @@ import {
   EuiSpacer,
 } from '@elastic/eui'
 
+import Background1 from '../svgs/background1'
+import Background2 from '../svgs/background2'
+const img = require('../../images/gareth-and-wynne.jpg')
+
 type Props = {
   placeholder: string
 }
 
 export default function SearchBarArea(props: Props) {
   const SearchBarArea = styled.section`
-    background-color: ${(props) => props.theme.header.background};
+    background-color: ${(props) => props.theme.header.background}
+    background-image: url(${img});
   `
 
   const MainTitle = styled.h1`

@@ -12,7 +12,6 @@ type Props = {
   color: string
 }
 
-
 export default function PopularContentCard(props: Props) {
   const { product, color, title, description, link } = props
 
@@ -24,9 +23,7 @@ export default function PopularContentCard(props: Props) {
   return (
     <Link href={link}>
       <EuiPanel>
-        <ProductTitle color={color}>
-          {product}
-        </ProductTitle>
+        <ProductTitle color={color}>{product}</ProductTitle>
         <EuiTitle size='xs'>
           <h5>{title}</h5>
         </EuiTitle>
@@ -41,7 +38,8 @@ export default function PopularContentCard(props: Props) {
 PopularContentCard.defaultProps = {
   product: 'Elasticsearch',
   title: 'Ingest data with Node.js on Elastic Cloud',
-  description: 'This guide tells you how to get started with: Securely connecting to Elasticsearch Service with Node.js Ingesting...',
-  link: '/docs/ingest-data-with-nodejs/',
+  description:
+    'This guide tells you how to get started with: Securely connecting to Elasticsearch Service with Node.js Ingesting...',
+  link: '/docs/ingest-data-with-nodejs',
   color: '#00BFB3',
 }
