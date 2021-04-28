@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react'
+import Link from 'next/link'
 import Header from '../../header'
+import SearchBarArea from '../../searchBar'
 
 import {
   EuiPage,
@@ -21,11 +23,21 @@ type Props = {
 export default class DocPage extends Component<Props> {
   render() {
     const { title } = this.props
-    let sideNav = <p>Remember to add a sidenav</p>
+    let sideNav = (
+      <Fragment>
+        <EuiSpacer size='xxl' />
+        <p>Remember to add a sidenav</p>
+      </Fragment>
+    )
 
     return (
       <Fragment>
         <Header />
+        <SearchBarArea
+          placeholder='Search tutorials, API references, example code and more...'
+          subtitle={false}
+          spacerSize='m'
+        />
         <EuiPage paddingSize='none'>
           <EuiPageSideBar sticky>{sideNav}</EuiPageSideBar>
           <EuiPageBody panelled>
@@ -38,6 +50,8 @@ export default class DocPage extends Component<Props> {
               color='transparent'
               borderRadius='none'>
               <EuiPageContentBody restrictWidth>
+                <Link href='/docs/'>Back to results</Link>
+                <EuiSpacer />
                 {this.props.children}
               </EuiPageContentBody>
             </EuiPageContent>

@@ -1,5 +1,4 @@
 import React, { Fragment, Component } from 'react'
-import styled from 'styled-components'
 import Head from 'next/head'
 
 import {
@@ -30,6 +29,7 @@ export default class Page extends Component {
               color='transparent'
               borderRadius='none'>
               <EuiPageContentBody restrictWidth>
+                <EuiSpacer size='xxl' />
                 {this.props.children}
               </EuiPageContentBody>
             </EuiPageContent>
