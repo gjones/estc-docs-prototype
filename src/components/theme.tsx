@@ -62,6 +62,9 @@ const light = {
   header: {
     background: defaultTheme.colours.light_lightestShade,
   },
+  footer: {
+    background: defaultTheme.colours.light_darkestShade,
+  },
   text: {
     default: defaultTheme.colours.light_darkestShade,
     link: defaultTheme.colours.light_primary,
@@ -74,6 +77,9 @@ const dark = {
   background: defaultTheme.colours.dark_pageBackground,
   header: {
     background: defaultTheme.colours.dark_lightShade,
+  },
+  footer: {
+    background: defaultTheme.colours.dark_darkestShade,
   },
   text: {
     default: defaultTheme.colours.dark_darkestShade,

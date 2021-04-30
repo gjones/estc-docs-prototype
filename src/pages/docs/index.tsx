@@ -4,11 +4,26 @@ import Date from '../../lib/date'
 import { getSortedDocsData } from '../../lib/docs'
 import styled from 'styled-components'
 
-import { EuiButton, EuiFlexGroup, EuiFlexItem, EuiHorizontalRule, EuiTitle } from '@elastic/eui'
+import {
+  EuiButton,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiHorizontalRule,
+  EuiSpacer,
+  EuiTitle,
+  EuiHeaderBreadcrumbs,
+} from '@elastic/eui'
 
 type Props = {
   allDocsData: any
 }
+
+const Container = styled.section`
+  max-width: 1280px;
+  padding: ${(props) => props.theme.sizes.sizeL}};
+  margin: 0 auto;
+  min-height: 80vh;
+`
 
 const PostList = styled.div`
   list-style: none;
@@ -43,39 +58,53 @@ const BlogAbstract = styled.p`
   color: ${(props) => props.theme.text.light};
   line-height: 1.4;
 `
+const headerBreadcrumbs = (
+  <EuiHeaderBreadcrumbs
+    breadcrumbs={[
+      {
+        text: 'Documentation',
+        href: '/',
+      },
+      {
+        text: 'Search results',
+      },
+    ]}
+  />
+)
 
 export default function Docs(props: Props) {
   return (
-    <Page>
-      <EuiFlexGroup direction='column'>
-        <EuiFlexItem>
-          <EuiTitle>
-            <h3>My title</h3>
-          </EuiTitle>
-        </EuiFlexItem>
-        <EuiFlexItem>
-          <PostList>
-            {props.allDocsData.map(({ id, date, title, abstract }: any) => (
-              <li key={id}>
-                <Link href={`/docs/${id}`}>
-                  <BlogPost>
-                    <BlogDate>
-                      <Date dateString={date} />
-                    </BlogDate>
-                    <BlogHeadline>{title}</BlogHeadline>
-                    <BlogAbstract>{abstract}</BlogAbstract>
-                    <EuiButton>
-                    Read post
-                    </EuiButton>
-                      
-                    <EuiHorizontalRule />
-                  </BlogPost>
-                </Link>
-              </li>
-            ))}
-          </PostList>
-        </EuiFlexItem>
-      </EuiFlexGroup>
+    <Page title='Search results' searchSpacerSize='m' subtitle={false} pageBreadcrumbs={headerBreadcrumbs}>
+      <Container>
+        <EuiFlexGroup direction='column'>
+          <EuiFlexItem>
+            <EuiSpacer />
+            <EuiTitle>
+              <h3>Search results for 'Ingest data'</h3>
+            </EuiTitle>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <PostList>
+              {props.allDocsData.map(({ id, date, title, abstract }: any) => (
+                <li key={id}>
+                  <Link href={`/docs/${id}`}>
+                    <BlogPost>
+                      <BlogDate>
+                        <Date dateString={date} />
+                      </BlogDate>
+                      <BlogHeadline>{title}</BlogHeadline>
+                      <BlogAbstract>{abstract}</BlogAbstract>
+                      <EuiButton>Read post</EuiButton>
+
+                      <EuiHorizontalRule />
+                    </BlogPost>
+                  </Link>
+                </li>
+              ))}
+            </PostList>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </Container>
     </Page>
   )
 }

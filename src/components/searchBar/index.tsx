@@ -14,7 +14,7 @@ import {
 type Props = {
   placeholder: string
   subtitle: boolean
-  spacerSize: string
+  spacerSize: any
 }
 
 export default function SearchBarArea(props: Props) {

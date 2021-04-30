@@ -16,9 +16,9 @@ export default function PopularContentCard(props: Props) {
   const { product, color, title, description, link } = props
 
   const ProductTitle = styled.p`
-  font-weight: ${(props) => props.theme.fontWeights.fontBold}};
-  color: ${color}};
-`
+    font-weight: ${(props) => props.theme.fontWeights.fontBold}};
+    color: ${color}};
+  `
 
   return (
     <Link href={link}>

@@ -5,6 +5,8 @@ import useDarkMode from 'use-dark-mode'
 import { ThemeProvider } from 'styled-components'
 import { lightTheme, darkTheme } from '../components/theme'
 
+import '../styles/global.css'
+
 function MyApp({ Component, pageProps }: AppProps) {
   const [isMounted, setIsMounted] = useState(false)
   const darkMode = useDarkMode(true)

@@ -25,6 +25,6 @@ export default function MissionCard(props: Props) {
 MissionCard.defaultProps = {
   title: 'Getting started',
   description: 'Here is the description',
-  imageSrc: 'https://source.unsplash.com/400x200/?Nature',
+  imageSrc: 'https://gareth-misc.s3.amazonaws.com/getting-started.svg',
   link: '/docs/',
 }

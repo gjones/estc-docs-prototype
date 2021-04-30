@@ -3,6 +3,7 @@ import { getAllDocIds, getDocData } from '../../lib/docs'
 import Date from '../../lib/date'
 import DocPage from '../../components/layouts/docs'
 
+import { EuiHeaderBreadcrumbs } from '@elastic/eui'
 
 interface Props {
   docData: any
@@ -10,11 +11,28 @@ interface Props {
 }
 
 export default function Doc(props: Props): React.ReactElement {
+  const headerBreadcrumbs = (
+    <EuiHeaderBreadcrumbs
+      breadcrumbs={[
+        {
+          text: 'Documentation',
+          href: '/',
+        },
+        {
+          text: 'Search: Ingest data',
+          href: '/docs/'
+        },
+        {
+          text: 'Ingesting data with Node.js',
+        },
+      ]}
+    />
+  )
+
   return (
     <DocPage
       title={props.docData.title}
-      description={props.docData.description}
-      largeHeadline={props.docData.title}>
+      pageBreadcrumbs={headerBreadcrumbs}>
       <br />
       <Date dateString={props.docData.date} />
       <br />

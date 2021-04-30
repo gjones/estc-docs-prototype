@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import Link from 'next/link'
+import Head from 'next/head'
+import styled from 'styled-components'
 import Header from '../../header'
+import Footer from '../../footer'
 import SearchBarArea from '../../searchBar'
 
 import {
@@ -11,18 +14,22 @@ import {
   EuiPageSideBar,
   EuiPageBody,
   EuiSpacer,
+  EuiText,
 } from '@elastic/eui'
 
 type Props = {
   title: string
-  description: string
-  largeHeadline: string
+  pageBreadcrumbs: any
   children: any
 }
 
+const ContentWrapper = styled.section`
+  min-height: 80vh;
+`
+
 export default class DocPage extends Component<Props> {
   render() {
-    const { title } = this.props
+    const { title, pageBreadcrumbs } = this.props
     let sideNav = (
       <Fragment>
         <EuiSpacer size='xxl' />
@@ -32,7 +39,10 @@ export default class DocPage extends Component<Props> {
 
     return (
       <Fragment>
-        <Header />
+        <Head>
+          <title>{title}</title>
+        </Head>
+        <Header breadcrumbs={pageBreadcrumbs} />
         <SearchBarArea
           placeholder='Search tutorials, API references, example code and more...'
           subtitle={false}
@@ -42,7 +52,9 @@ export default class DocPage extends Component<Props> {
           <EuiPageSideBar sticky>{sideNav}</EuiPageSideBar>
           <EuiPageBody panelled>
             <EuiSpacer size='xxl' />
+            <EuiSpacer size='xxl' />
             <EuiPageHeader restrictWidth pageTitle={title} />
+            <ContentWrapper>
             <EuiPageContent
               hasBorder={false}
               hasShadow={false}
@@ -52,11 +64,13 @@ export default class DocPage extends Component<Props> {
               <EuiPageContentBody restrictWidth>
                 <Link href='/docs/'>Back to results</Link>
                 <EuiSpacer />
-                {this.props.children}
+                <EuiText>{this.props.children}</EuiText>
               </EuiPageContentBody>
             </EuiPageContent>
+            </ContentWrapper>
           </EuiPageBody>
         </EuiPage>
+        <Footer />
       </Fragment>
     )
   }
