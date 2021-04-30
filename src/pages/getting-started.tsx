@@ -7,6 +7,7 @@ import {
   EuiFlexGroup,
   EuiFlexGrid,
   EuiFlexItem,
+  EuiHeaderBreadcrumbs,
   EuiLink,
   EuiSpacer,
   EuiTitle,
@@ -20,12 +21,28 @@ const Container = styled.section`
   margin: 0 auto;
 `
 
+const headerBreadcrumbs = (
+  <EuiHeaderBreadcrumbs
+    breadcrumbs={[
+      {
+        text: 'Documentation',
+        href: '/'
+      },
+      {
+        text: 'Getting started',
+      },
+    ]}
+  />
+)
+
 const Index: FunctionComponent = () => (
   <>
     <Page
       title='Welcome to Elastic Docs'
       searchSpacerSize='xxl'
-      subtitle={true}>
+      subtitle={true}
+      pageBreadcrumbs={headerBreadcrumbs}
+      >
       <EuiSpacer size='xxl' />
 
       <Container>
