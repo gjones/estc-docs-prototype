@@ -49,6 +49,7 @@ const defaultTheme = {
   fontWeights: {
     fontRegular: `normal`,
     fontBold: `bold`,
+    fontExtraBold: `800`,
   },
   mediaQueries: {
     largeScreens: `(min-width : 70em)`,
@@ -61,14 +62,26 @@ const light = {
   background: defaultTheme.colours.light_emptyShade,
   header: {
     background: defaultTheme.colours.light_lightestShade,
+    text: defaultTheme.colours.light_emptyShade,
+  },
+  feature: {
+    background: defaultTheme.colours.light_lightestShade,
+  },
+  card: {
+    borderColour: defaultTheme.colours.light_lightShade,
+    background: defaultTheme.colours.light_lightestShade,
   },
   footer: {
-    background: defaultTheme.colours.light_darkestShade,
+    background: defaultTheme.colours.light_primary,
   },
   text: {
     default: defaultTheme.colours.light_darkestShade,
     link: defaultTheme.colours.light_primary,
     light: defaultTheme.colours.light_darkShade,
+  },
+  title: {
+    default: defaultTheme.colours.light_darkestShade,
+    subtle: defaultTheme.colours.light_darkShade,
   },
   // ...
 }
@@ -77,14 +90,26 @@ const dark = {
   background: defaultTheme.colours.dark_pageBackground,
   header: {
     background: defaultTheme.colours.dark_lightShade,
+    text: defaultTheme.colours.dark_emptyShade,
+  },
+  feature: {
+    background: defaultTheme.colours.dark_lightestShade,
+  },
+  card: {
+    borderColour: defaultTheme.colours.dark_lightShade,
+    background: defaultTheme.colours.dark_lightestShade,
   },
   footer: {
-    background: defaultTheme.colours.dark_darkestShade,
+    background: defaultTheme.colours.dark_primary,
   },
   text: {
     default: defaultTheme.colours.dark_darkestShade,
     link: defaultTheme.colours.dark_primary,
     light: defaultTheme.colours.dark_darkShade,
+  },
+  title: {
+    default: defaultTheme.colours.dark_darkestShade,
+    subtle: defaultTheme.colours.dark_mediumShade,
   },
 }
 

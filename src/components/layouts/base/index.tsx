@@ -44,10 +44,7 @@ export default class Page extends Component<Props> {
               paddingSize='none'
               color='transparent'
               borderRadius='none'>
-              <EuiPageContentBody>
-                <EuiSpacer size='xxl' />
-                {this.props.children}
-              </EuiPageContentBody>
+              <EuiPageContentBody>{this.props.children}</EuiPageContentBody>
             </EuiPageContent>
             <EuiSpacer size='xxl' />
           </EuiPageBody>

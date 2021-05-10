@@ -55,18 +55,18 @@ export default class DocPage extends Component<Props> {
             <EuiSpacer size='xxl' />
             <EuiPageHeader restrictWidth pageTitle={title} />
             <ContentWrapper>
-            <EuiPageContent
-              hasBorder={false}
-              hasShadow={false}
-              paddingSize='none'
-              color='transparent'
-              borderRadius='none'>
-              <EuiPageContentBody restrictWidth>
-                <Link href='/docs/'>Back to results</Link>
-                <EuiSpacer />
-                <EuiText>{this.props.children}</EuiText>
-              </EuiPageContentBody>
-            </EuiPageContent>
+              <EuiPageContent
+                hasBorder={false}
+                hasShadow={false}
+                paddingSize='none'
+                color='transparent'
+                borderRadius='none'>
+                <EuiPageContentBody restrictWidth>
+                  <Link href='/docs/'>Back to results</Link>
+                  <EuiSpacer />
+                  <EuiText>{this.props.children}</EuiText>
+                </EuiPageContentBody>
+              </EuiPageContent>
             </ContentWrapper>
           </EuiPageBody>
         </EuiPage>

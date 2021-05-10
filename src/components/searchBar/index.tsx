@@ -20,20 +20,25 @@ type Props = {
 export default function SearchBarArea(props: Props) {
   const SearchBarArea = styled.section`
     background-color: ${(props) => props.theme.header.background};
-    background-image: url(https://s3.amazonaws.com/garethdjones.com/images/background-2.svg),
-      url(https://s3.amazonaws.com/garethdjones.com/images/background-1.svg);
-    background-position: left bottom, right top;
-    background-repeat: no-repeat, no-repeat;
+    background: url(https://gareth-misc.s3.amazonaws.com/docs-header-bg-default.png)
+      0 0 no-repeat;
+    background-size: 100% auto;
+    // background-image: url(https://s3.amazonaws.com/garethdjones.com/images/background-2.svg),
+    //   url(https://s3.amazonaws.com/garethdjones.com/images/background-1.svg);
+    // background-position: left bottom, right top;
+    // background-repeat: no-repeat, no-repeat;
     box-shadow: inset 0px -2px 2px rgba(200, 200, 200, 0.2);
   `
 
   const MainTitle = styled.h1`
     text-align: center;
-    font-size: ${(props) => props.theme.fontSizes.textLarger}};
+    font-size: ${(props) => props.theme.fontSizes.textLargest}};
+    color: ${(props) => props.theme.header.text}};
   `
 
   const Subtitle = styled.p`
     text-align: center;
+    color: ${(props) => props.theme.header.text}};
   `
 
   const MainSearch = styled.div`
@@ -90,7 +95,7 @@ export default function SearchBarArea(props: Props) {
       <EuiFlexGroup gutterSize='none' direction='column'>
         <EuiFlexItem>
           <EuiSpacer size={spacerSize} />
-          <EuiSpacer size='l' />
+          <EuiSpacer size='s' />
           <EuiTitle size='l'>
             <MainTitle>Elastic Documentation</MainTitle>
           </EuiTitle>

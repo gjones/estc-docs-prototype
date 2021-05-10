@@ -12,7 +12,7 @@ import {
   EuiSpacer,
   EuiTitle,
 } from '@elastic/eui'
-import MissionCard from '../components/cards/missionCard'
+import DxMissionCard from '../components/cards/dxMissionCard'
 import PopularContentCard from '../components/cards/popularContentCard'
 
 const Container = styled.section`
@@ -52,38 +52,39 @@ const Index: FunctionComponent = () => (
           <EuiFlexItem>
             <EuiFlexGrid columns={3} gutterSize='xl'>
               <EuiFlexItem>
-                <MissionCard
+                <DxMissionCard
                   description='Start ingesting and visualising your data with Elasticsearch in minutes.'
                   imageSrc='https://gareth-misc.s3.amazonaws.com/welcome-blue.svg'
+                  link='/getting-started/'
                 />
               </EuiFlexItem>
               <EuiFlexItem>
-                <MissionCard
+                <DxMissionCard
                   title='Adding search to your site'
                   description='Easily add a search bar to your website or native app.'
                   imageSrc='https://gareth-misc.s3.amazonaws.com/add-search.svg'
                 />
               </EuiFlexItem>
               <EuiFlexItem>
-                <MissionCard
+                <DxMissionCard
                   title='Observing your logs &amp; metrics'
                   description='Ingest your logs and start querying in no time at all.'
                 />
               </EuiFlexItem>
               <EuiFlexItem>
-                <MissionCard
+                <DxMissionCard
                   title='Protecting your data &amp; employees'
                   description='Get started with Endpoint security, SIEM, threat hunting and more.'
                 />
               </EuiFlexItem>
               <EuiFlexItem>
-                <MissionCard
+                <DxMissionCard
                   title='Account and Billing'
                   description='Understand your bills, add new users and roles.'
                 />
               </EuiFlexItem>
               <EuiFlexItem>
-                <MissionCard
+                <DxMissionCard
                   title='API reference'
                   description='Vier Elasticsearch and Cloud public API reference materials.'
                 />
