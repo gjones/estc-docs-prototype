@@ -3,6 +3,7 @@ title: Ingest data with Node.js on Elasticsearch
 description: Ingest data with Node.js on Elasticsearch
 date: '2020-12-18'
 abstract: 'This guide tells you how to get started with: Securely connecting to Elasticsearch Service with Node.js. Ingesting data into your deployment from your application. Searching and modifying your data on Elasticsearch Service'
+icon: 'logoElastic'
 ---
 
 This guide tells you how to get started with:

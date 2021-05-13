@@ -6,6 +6,7 @@ import {
   EuiFieldSearch,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiHideFor,
   EuiText,
   EuiTitle,
   EuiSpacer,
@@ -19,32 +20,51 @@ type Props = {
 
 export default function SearchBarArea(props: Props) {
   const SearchBarArea = styled.section`
-    background-color: ${(props) => props.theme.header.background};
+    background-color: ${(props) => props.theme.footer.background};
     background: url(https://gareth-misc.s3.amazonaws.com/docs-header-bg-default.png)
       0 0 no-repeat;
     background-size: 100% auto;
-    // background-image: url(https://s3.amazonaws.com/garethdjones.com/images/background-2.svg),
-    //   url(https://s3.amazonaws.com/garethdjones.com/images/background-1.svg);
-    // background-position: left bottom, right top;
-    // background-repeat: no-repeat, no-repeat;
     box-shadow: inset 0px -2px 2px rgba(200, 200, 200, 0.2);
+
+    @media only screen and ${(props) => props.theme.mediaQueries.mediumScreens} {
+      background-size: auto 100%;
+      height: 14.5rem;
+    }
+
+    @media only screen and ${(props) => props.theme.mediaQueries.smallScreens} {
+      background-size: auto 100%;
+      height: 18.5rem;
+    }
   `
 
   const MainTitle = styled.h1`
     text-align: center;
-    font-size: ${(props) => props.theme.fontSizes.textLargest}};
-    color: ${(props) => props.theme.header.text}};
+    font-size: ${(props) => props.theme.fontSizes.textLargest};
+    color: ${(props) => props.theme.header.text};
+
+    @media only screen and ${(props) => props.theme.mediaQueries.smallScreens} {
+      font-size: ${(props) => props.theme.fontSizes.textLarger};
+    }
   `
 
   const Subtitle = styled.p`
     text-align: center;
     color: ${(props) => props.theme.header.text}};
+
+    @media only screen and ${(props) => props.theme.mediaQueries.smallScreens} {
+      padding: 0 ${(props) => props.theme.sizes.sizeL};
+    }
   `
 
   const MainSearch = styled.div`
     .euiFormControlLayout {
       max-width: 50rem;
       margin: 0 auto;
+
+      @media only screen and ${(props) =>
+          props.theme.mediaQueries.smallScreens} {
+        max-width: 85%;
+      }
     }
 
     input {
@@ -101,7 +121,9 @@ export default function SearchBarArea(props: Props) {
           </EuiTitle>
         </EuiFlexItem>
         {subTitle}
-        <EuiSpacer size={spacerSize} />
+        <EuiHideFor sizes={['xs', 's']}>
+          <EuiSpacer size={spacerSize} />
+        </EuiHideFor>
         <EuiFlexItem>
           <EuiFlexGroup gutterSize='none' justifyContent='center'>
             <EuiFlexItem>

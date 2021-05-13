@@ -24,7 +24,7 @@ type Props = {
 const DxCard = styled.div`
   .euiPanel {
     box-shadow: none;
-    border-radius: 14px;
+    border-radius: ${(props) => props.theme.borderRadius.radiusL};
     background: ${(props) => props.theme.card.background};
     padding: ${(props) => props.theme.sizes.sizeL} ${(props) => props.theme.sizes.sizeXXL}
   }
@@ -42,7 +42,7 @@ export default function DxPopularCard(props: Props) {
     <DxCard>
       <Link href={link}>
         <EuiPanel>
-          <EuiFlexGroup gutterSize='m' alignItems='center'>
+          <EuiFlexGroup gutterSize='m' alignItems='center' responsive={false}>
             <EuiFlexItem grow={false}>
               <EuiIcon type={icon} size='l' />
             </EuiFlexItem>

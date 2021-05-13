@@ -41,6 +41,10 @@ export default class DocPage extends Component<Props> {
       <Fragment>
         <Head>
           <title>{title}</title>
+          <link
+            rel='icon'
+            href='https://gareth-misc.s3.amazonaws.com/favicon-32x32.png'
+            type='image/png'></link>
         </Head>
         <Header breadcrumbs={pageBreadcrumbs} />
         <SearchBarArea

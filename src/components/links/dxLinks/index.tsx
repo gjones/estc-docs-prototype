@@ -27,7 +27,7 @@ export default function DxLink(props: Props) {
   return (
     <LinkWrapper>
       <Link href={link}>
-        <EuiFlexGroup alignItems='center' gutterSize='m'>
+        <EuiFlexGroup alignItems='center' gutterSize='m' responsive={false}>
           <EuiFlexItem grow={false}>
             <EuiIcon type='link' />
           </EuiFlexItem>

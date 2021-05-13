@@ -3,7 +3,6 @@ import React, { Fragment } from 'react'
 import {
   EuiButton,
   EuiHeader,
-  EuiHeaderBreadcrumbs,
   EuiHeaderSectionItem,
   EuiHeaderLogo,
   EuiHeaderLinks,

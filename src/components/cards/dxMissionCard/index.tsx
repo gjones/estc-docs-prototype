@@ -12,16 +12,21 @@ type Props = {
 
 const DxCard = styled.div`
   max-width: 25rem;
+
   .euiPanel {
     box-shadow: none;
-    border-radius: 28px;
+    border-radius: ${(props) => props.theme.borderRadius.radiusL};
   }
   .euiCard__image {
-    border-top-left-radius: 28px;
-    border-top-right-radius: 28px;
+    border-top-left-radius: ${(props) => props.theme.borderRadius.radiusL};
+    border-top-right-radius: ${(props) => props.theme.borderRadius.radiusL};
   }
   .euiCard__content {
     width: 85%;
+    @media only screen and ${(props) =>
+        props.theme.mediaQueries.mediumScreens} {
+      width: 95%;
+    }
   }
   .euiCard__title {
     display: flex;
@@ -41,12 +46,12 @@ export default function DxMissionCard(props: Props) {
 
   return (
     <DxCard>
-    <EuiCard
-      image={imageSrc}
-      title={title}
-      description={description}
-      href={link}
-    />
+      <EuiCard
+        image={imageSrc}
+        title={title}
+        description={description}
+        href={link}
+      />
     </DxCard>
   )
 }

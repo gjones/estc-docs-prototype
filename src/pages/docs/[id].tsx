@@ -36,7 +36,8 @@ export default function Doc(props: Props): React.ReactElement {
       <br />
       <Date dateString={props.docData.date} />
       <br />
-      <div dangerouslySetInnerHTML={{ __html: props.docData.contentHtml }} />
+
+      <div dangerouslySetInnerHTML={{ __html: props.docData.contentHtml}} />
     </DocPage>
   )
 }

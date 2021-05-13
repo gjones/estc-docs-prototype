@@ -51,6 +51,12 @@ const defaultTheme = {
     fontBold: `bold`,
     fontExtraBold: `800`,
   },
+  borderRadius: {
+    radiusS: `0.625rem`,
+    radiusM: `0.875rem`,
+    radiusL: `1.125rem`,
+    radiusXL: `1.75rem`,
+  },
   mediaQueries: {
     largeScreens: `(min-width : 70em)`,
     mediumScreens: `(max-width : 70em)`,

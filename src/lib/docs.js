@@ -3,6 +3,10 @@ import path from 'path'
 import matter from 'gray-matter'
 import remark from 'remark'
 import html from 'remark-html'
+import hydrate from 'next-mdx-remote/hydrate'
+import { providerComponents } from '../../components/mdx/provider_components'
+
+const components = {providerComponents}
 
 const docsDirectory = path.join(process.cwd(), 'src/docs')
 

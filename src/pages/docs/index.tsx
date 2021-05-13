@@ -5,14 +5,18 @@ import { getSortedDocsData } from '../../lib/docs'
 import styled from 'styled-components'
 
 import {
-  EuiButton,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiHorizontalRule,
-  EuiSpacer,
-  EuiTitle,
   EuiHeaderBreadcrumbs,
+  EuiIcon,
+  EuiHorizontalRule,
+  EuiPanel,
+  EuiSelect,
+  EuiSpacer,
+  EuiText,
+  EuiTitle,
 } from '@elastic/eui'
+import DxPopularCard from '../../components/cards/popularContentCard'
 
 type Props = {
   allDocsData: any
@@ -20,7 +24,7 @@ type Props = {
 
 const Container = styled.section`
   max-width: 1280px;
-  padding: ${(props) => props.theme.sizes.sizeL}};
+  padding: ${(props) => props.theme.sizes.sizeL};
   margin: 0 auto;
   min-height: 80vh;
 `
@@ -29,35 +33,16 @@ const PostList = styled.div`
   list-style: none;
 `
 
-const BlogPost = styled.div`
-  max-width: 85%;
-`
-
-const BlogDate = styled.h4`
-  font-weight: ${(props) => props.theme.fontWeights.fontRegular};
-  font-size: ${(props) => props.theme.fontSizes.textRegular};
-  color: ${(props) => props.theme.text.accent};
-  margin: ${(props) => props.theme.sizes.sizeXL} 0
-    ${(props) => props.theme.sizes.sizeXS};
-`
-
-const BlogHeadline = styled.h2`
-  font-weight: ${(props) => props.theme.fontWeights.fontBold};
-  font-size: ${(props) => props.theme.fontSizes.textLargish};
-  color: ${(props) => props.theme.text.default};
-  margin-top: 0;
-  margin-bottom: ${(props) => props.theme.sizes.sizeM};
-
-  @media only screen and ${(props) => props.theme.mediaQueries.smallScreens} {
-    font-size: ${(props) => props.theme.fontSizes.textLarger};
-    line-height: 1.1;
+const SearchResult = styled.li`
+.euiPanel {
+  box-shadow: none;
+  border-radius: ${(props) => props.theme.borderRadius.radiusL};
+  padding: ${(props) => props.theme.sizes.sizeL} ${(props) => props.theme.sizes.sizeXXL}
+  &:hover {
+    background: ${(props) => props.theme.card.background};
   }
 `
 
-const BlogAbstract = styled.p`
-  color: ${(props) => props.theme.text.light};
-  line-height: 1.4;
-`
 const headerBreadcrumbs = (
   <EuiHeaderBreadcrumbs
     breadcrumbs={[
@@ -74,33 +59,110 @@ const headerBreadcrumbs = (
 
 export default function Docs(props: Props) {
   return (
-    <Page title='Search results' searchSpacerSize='m' subtitle={false} pageBreadcrumbs={headerBreadcrumbs}>
+    <Page
+      title='Search results'
+      searchSpacerSize='m'
+      subtitle={false}
+      pageBreadcrumbs={headerBreadcrumbs}>
       <Container>
+        <EuiSpacer size='xxl' />
         <EuiFlexGroup direction='column'>
+          <EuiFlexItem>
+            <EuiFlexGroup direction='row' justifyContent='center'>
+              <EuiFlexItem grow={false}>
+                <EuiSelect
+                  options={[
+                    {
+                      value: 'option_one',
+                      text: 'Sort by: Relevance',
+                    },
+                  ]}
+                />
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiSelect
+                  options={[
+                    {
+                      value: 'option_one',
+                      text: 'Product: Any',
+                    },
+                  ]}
+                />
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiSelect
+                  options={[
+                    {
+                      value: 'option_one',
+                      text: 'Type: Any',
+                    },
+                  ]}
+                />
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </EuiFlexItem>
           <EuiFlexItem>
             <EuiSpacer />
             <EuiTitle>
-              <h3>Search results for 'Ingest data'</h3>
+              <h3>Your search for 'Ingest data' returned 32 results</h3>
             </EuiTitle>
           </EuiFlexItem>
           <EuiFlexItem>
+            <EuiFlexGroup>
+              <EuiFlexItem>
+                <EuiPanel></EuiPanel>
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <EuiFlexGroup direction='column'>
+                  <EuiFlexItem>
+                    <DxPopularCard />
+                  </EuiFlexItem>
+                  <EuiFlexItem>
+                    <DxPopularCard />
+                  </EuiFlexItem>
+                </EuiFlexGroup>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiHorizontalRule />
+            <EuiSpacer size='m' />
             <PostList>
-              {props.allDocsData.map(({ id, date, title, abstract }: any) => (
-                <li key={id}>
-                  <Link href={`/docs/${id}`}>
-                    <BlogPost>
-                      <BlogDate>
-                        <Date dateString={date} />
-                      </BlogDate>
-                      <BlogHeadline>{title}</BlogHeadline>
-                      <BlogAbstract>{abstract}</BlogAbstract>
-                      <EuiButton>Read post</EuiButton>
-
-                      <EuiHorizontalRule />
-                    </BlogPost>
-                  </Link>
-                </li>
-              ))}
+              {props.allDocsData.map(
+                ({ id, date, title, abstract, icon }: any) => (
+                  <SearchResult key={id}>
+                    <Link href={`/docs/${id}`}>
+                      <EuiPanel>
+                        <EuiFlexGroup direction='column' gutterSize='m'>
+                          <EuiFlexItem>
+                            <EuiFlexGroup gutterSize='m' alignItems='center'>
+                              <EuiFlexItem grow={false}>
+                                <EuiIcon type={icon} size='l' />
+                              </EuiFlexItem>
+                              <EuiFlexItem>
+                                <EuiTitle size='xs'>
+                                  <h5>{title}</h5>
+                                </EuiTitle>
+                              </EuiFlexItem>
+                            </EuiFlexGroup>
+                          </EuiFlexItem>
+                          <EuiFlexItem>
+                            <EuiText>
+                              <p>{abstract}</p>
+                            </EuiText>
+                            <EuiSpacer size='s' />
+                            <EuiText size='s' color='subdued'>
+                              <p>
+                                Last updated <Date dateString={date} />
+                              </p>
+                            </EuiText>
+                          </EuiFlexItem>
+                        </EuiFlexGroup>
+                      </EuiPanel>
+                    </Link>
+                  </SearchResult>
+                ),
+              )}
             </PostList>
           </EuiFlexItem>
         </EuiFlexGroup>
