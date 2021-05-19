@@ -1,0 +1,301 @@
+---
+title: Ingest data with Python on Elastic Cloud
+description: Ingest data with Python on Elastic Cloud
+date: '2020-12-18'
+excerpt: 'This guide tells you how to get started with: Securely connecting to Elasticsearch Service with Python Ingesting data into...'
+icon: 'logoElasticsearch'
+tags: ['ingesting data', 'python']
+---
+
+<DocSummary title='Summary' titleSize='XL'>
+This guide tells you how to get started with:
+
+* Securely connecting to {n} with Node.js
+* Ingesting data into your deployment from your application
+* Searching and modifying your data on {n}
+
+If you are an Node.js application programmer who is new to the Elastic Stack, this content can help you get started more easily.
+
+_Time required: 45 minutes_
+</DocSummary>
+
+## Prerequisites
+
+These steps are applicable to your existing application. If you don’t have one, you can use the example included here to create one.
+
+#### Create the npm `package.json` file
+
+```
+npm init
+```
+
+#### Get the `elasticsearch` and `config` packages
+
+```
+npm install @elastic/elasticsearch
+npm install config
+```
+
+Note that the `config` package is not required if you have your own method to keep your configuration details private.
+
+#### Create a configuration file
+
+```
+mkdir config
+vi config/default.json
+```
+
+The example here shows what the `config` package expects. You need to update `config/default.json` with your deployment details in the following sections:
+
+```
+{
+  "elastic": {
+    "cloudID": "DEPLOYMENT_NAME:CLOUD_ID_DETAILS",
+    "username": "elastic",
+    "password": "LONGPASSWORD"
+  }
+}
+```
+
+#### Get {n}
+
+1. {ess-trial}[Get a free trial].
+2. Log into {ess-console}[Elastic Cloud].
+3. Click *Create deployment*.
+4. Select *Elastic Stack*, leave it at the I/O optimized default, and give your deployment a name.
+5. Click *Create deployment* and save your Elastic deployment credentials. You will need these credentials later on.
+6. You also need the Cloud ID later on, as it simplifies sending data to Elastic Cloud. Click on the deployment name from the Elastic Cloud portal or the *Deployments* page and copy down the information under *Cloud ID*:
+
+Prefer not to subscribe to yet another service? You can also get {n} through [marketplaces,AWS, Azure, and GCP marketplaces](https://github.com/elastic/cloud/blob/9b626dedd9d1aaecffc8918dca320376af95ce82/docs/saas/ec-getting-started-use-cases.asciidoc#{p}-marketplaces).
+
+#### Connect securely
+
+If you are using https://www.elastic.co/cloud[Elastic Cloud], a language client offers an easy way to connect with the `cloud_id` (Cloud ID) parameter. You must pass the Cloud ID that you can find in the cloud console, and then your authentication details inside the `auth` option.
+
+To connect and use a language client with {n}, you need to think about authentication. Two authentication mechanisms are supported, _API key_ and _basic authentication_. Here we’ll show you how to use basic authentication to get started more quickly, but you can also generate API keys as shown later on. API keys are safer and preferred for production environments.
+
+#### Basic authentication
+
+For basic authentication, use the same deployment credentials (`username` and `password` parameters) and Cloud ID you copied down earlier when you created your deployment. (If you did not save the password, you can <<{p}-password-reset,reset it first>>.)
+
+You first need to edit your `config/default.json` file with these deployment details:
+
+```
+{
+  "elastic": {
+    "cloudID": '<CloudID>',
+    "username": '<Username>',
+    "password": '<Password>'
+  }
+}
+```
+
+Next, you need to use these configs with the Node.js Elasticsearch client:
+
+```
+const { Client } = require('@elastic/elasticsearch')
+const config = require('config');
+const elasticConfig = config.get('elastic');
+
+const client = new Client({
+  cloud: {
+    id: elasticConfig.cloudID
+  },
+  auth: {
+    username: elasticConfig.username,
+    password: elasticConfig.password
+  }
+})
+```
+
+You can now confirm that you have connected to the deployment by returning some information about the deployment:
+
+```
+client.info()
+  .then(response => console.log(response))
+  .catch(error => console.error(error))
+```
+
+#### Ingest data
+
+After connecting to your deployment, you are ready to index and search data. Let's create a new index, insert some quotes from our favorite characters, and refresh the index so that it is ready to be searched. A refresh makes all operations performed on an index since the last refresh available for search.
+
+```
+async function run() {
+  await client.index({
+    index: 'game-of-thrones',
+    body: {
+      character: 'Ned Stark',
+    quote: 'Winter is coming.'
+    }
+  })
+
+  await client.index({
+    index: 'game-of-thrones',
+    body: {
+      character: 'Daenerys Targaryen',
+    quote: 'I am the blood of the dragon.'
+    }
+  })
+
+  await client.index({
+    index: 'game-of-thrones',
+    body: {
+      character: 'Tyrion Lannister',
+    quote: 'A mind needs books like a sword needs whetstone.'
+    }
+  })
+
+  await client.indices.refresh({index: 'game-of-thrones'})
+}
+
+run().catch(console.log)
+```
+
+When using the link:{jsclient-current}/api-reference.html#_index[client.index] API, the request automatically creates the `game-of-thrones` index if it doesn’t already exist, as well as document IDs for each indexed document if they are not explicitly specified.
+
+### Search and modify data
+
+After creating a new index and ingesting some data, you are now ready to search. Let’s find what characters have said things about `winter`:
+
+```
+async function read() {
+  const { body } = await client.search({
+    index: 'game-of-thrones',
+    body: {
+      query: {
+        match: { quote: 'winter' }
+      }
+    }
+  })
+  console.log(body.hits.hits)
+}
+
+read().catch(console.log)
+```
+
+The search request returns content of documents containing `'winter'` in the `quote` field, including document IDs that were automatically generated. You can make updates to specific documents using document IDs. Let’s add a birthplace for our character:
+
+```
+async function update() {
+  await client.update({
+    index: 'game-of-thrones',
+    id: <ID>,
+    body: {
+      script: {
+        source: "ctx._source.birthplace = 'Winterfell'"
+      }
+    }
+  })
+  const { body } = await client.get({
+    index: 'game-of-thrones',
+    id: <ID>
+  })
+
+  console.log(body)
+}
+
+update().catch(console.log)
+```
+
+This link:{jsclient-current}/examples.html[more comprehensive list of API examples] includes bulk operations, checking the existence of documents, updating by query, deleting, scrolling, and SQL queries. To learn more, see the complete {jsclient-current}/api-reference.html[API reference].
+
+#### Switch to API key authentication
+
+To get started, authentication to Elasticsearch used the `elastic`
+superuser and password, but an API key is much safer and a best practice for production.
+
+In the example that follows, an API key is created with the cluster `monitor` privilege which gives read-only access for determining the cluster state. Some additional privileges also allow `create_index`, `write`, `read`, and `manage` operations for the specified index. The index `manage` privilege is added to enable index refreshes.
+
+The `security.createApiKey` function returns an `id` and `api_key` value which can then be concatenated and encoded in `base64`:
+
+```
+async function generateApiKeys (opts) {
+  const { body } = await client.security.createApiKey({
+    body: {
+      name: 'nodejs_example',
+      role_descriptors: {
+        'nodejs_example_writer': {
+          'cluster': ['monitor'],
+          'index': [
+            {
+              'names': ['game-of-thrones'],
+              'privileges': ['create_index', 'write', 'read', 'manage']
+            }
+          ]
+        }
+      }
+    }
+  })
+
+  return Buffer.from(`${body.id}:${body.api_key}`).toString('base64')
+}
+
+generateApiKeys()
+  .then(console.log)
+  .catch(err => {
+  console.error(err)
+  process.exit(1)
+})
+```
+
+The `base64` encoded output is as follows and is ready to be added to the configuration file:
+
+```
+API_KEY_DETAILS
+```
+
+Edit the `config/default.json` configuration file you created earlier and add this API key:
+
+```
+  "elastic-cloud": {
+    "cloudID": "DEPLOYMENT_NAME:CLOUD_ID_DETAILS",
+    "username": "elastic",
+    "password": "LONGPASSWORD",
+    "apiKey": "API_KEY_DETAILS"
+  }
+}
+```
+
+Now the API key can be used in place of the username and password. The client connection becomes:
+
+```
+const elasticConfig = config.get('elastic-cloud');
+
+const client = new Client({
+  cloud: {
+    id: elasticConfig.cloudID
+  },
+  auth: {
+    apiKey: elasticConfig.apiKey
+  }
+})
+```
+
+See {ref}/security-api-create-api-key.html[Create API key API] to learn more about API Keys and {ref}/security-privileges.html[Security privileges] to understand which privileges are needed. If you are not sure what the right combination of privileges for your custom application is, you can enable {ref}/enable-audit-logging.html[audit logging] on Elasticsearch to find out what privileges are being used. To learn more about how logging works on Elastic Cloud, see https://www.elastic.co/blog/monitoring-elastic-cloud-deployment-logs-and-metrics[Monitoring Elastic Cloud deployment logs and metrics].
+
+#### Best practices
+
+##### _Security::_
+
+When connecting to Elastic Cloud, the client automatically enables both request and response compression by default, since it yields significant throughput improvements. Moreover, the client also sets the SSL option `secureProtocol` to `TLSv1_2_method` unless specified otherwise. You can still override this option by configuring it.
++
+Do not enable sniffing when using Elastic Cloud, since the nodes are behind a load balancer. Elastic Cloud takes care of everything for you. Take a look at link:https://www.elastic.co/blog/elasticsearch-sniffing-best-practices-what-when-why-how[Elasticsearch sniffing best practices: What, when, why, how] if you want to know more.
+
+##### _Connections::_
+
+If your application connecting to {n} runs under the Java security manager, you should at least disable the caching of positive hostname resolutions. To learn more, see <<{p}-transport-dns-cache,Disable DNS caching>>.
+
+##### _Schema::_
+
+When the above example code was run an index mapping was created automatically. The field types were selected by Elasticsearch based on the content seen when the first record was ingested, and updated as new fields appeared in the data. It would be more efficient to specify the fields and field types in advance to optimize performance. See the Elastic Common Schema documentation and Field Type documentation when you are designing the schema for your production use cases.
+
+##### _Ingest::_
+
+For more advanced scenarios, this link:{jsclient-current}/bulk_examples.html[bulk ingestion] reference gives an example of the `bulk` API that makes it possible to perform multiple operations in a single call. This bulk example also explicitly specifies document IDs. If you have a lot of documents to index, using bulk to batch document operations is significantly faster than submitting requests individually.
+
+#### Next steps
+
+TO DO. Suggestion from Yaru:
+
+Now that the user data is in the cluster, we could provide some helpful links to the (in Kibana) Index Management, Index Patterns, Discover interfaces, and datastreams.

@@ -1,14 +1,13 @@
-import Page from '../../components/layouts/base'
-import Link from 'next/link'
-import Date from '../../lib/date'
-import { getSortedDocsData } from '../../lib/docs'
+import BaseLayout from '../../components/layouts/base'
+import { getSortedPosts } from '../../lib/posts'
 import styled from 'styled-components'
 
 import {
+  EuiBadge,
   EuiFlexGroup,
+  EuiFlexGrid,
   EuiFlexItem,
   EuiHeaderBreadcrumbs,
-  EuiIcon,
   EuiHorizontalRule,
   EuiPanel,
   EuiSelect,
@@ -16,32 +15,8 @@ import {
   EuiText,
   EuiTitle,
 } from '@elastic/eui'
-import DxPopularCard from '../../components/cards/popularContentCard'
+import DocCard from '../../components/cards/doc_card'
 
-type Props = {
-  allDocsData: any
-}
-
-const Container = styled.section`
-  max-width: 1280px;
-  padding: ${(props) => props.theme.sizes.sizeL};
-  margin: 0 auto;
-  min-height: 80vh;
-`
-
-const PostList = styled.div`
-  list-style: none;
-`
-
-const SearchResult = styled.li`
-.euiPanel {
-  box-shadow: none;
-  border-radius: ${(props) => props.theme.borderRadius.radiusL};
-  padding: ${(props) => props.theme.sizes.sizeL} ${(props) => props.theme.sizes.sizeXXL}
-  &:hover {
-    background: ${(props) => props.theme.card.background};
-  }
-`
 
 const headerBreadcrumbs = (
   <EuiHeaderBreadcrumbs
@@ -57,12 +32,12 @@ const headerBreadcrumbs = (
   />
 )
 
-export default function Docs(props: Props) {
+const DocsIndex = ({ allPostsData }) => {
   return (
-    <Page
+    <BaseLayout
       title='Search results'
-      searchSpacerSize='m'
-      subtitle={false}
+      searchSpacerSize='xxl'
+      subtitle={true}
       pageBreadcrumbs={headerBreadcrumbs}>
       <Container>
         <EuiSpacer size='xxl' />
@@ -108,74 +83,79 @@ export default function Docs(props: Props) {
             </EuiTitle>
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiFlexGroup>
-              <EuiFlexItem>
-                <EuiPanel></EuiPanel>
-              </EuiFlexItem>
-              <EuiFlexItem>
-                <EuiFlexGroup direction='column'>
-                  <EuiFlexItem>
-                    <DxPopularCard />
+            <EuiHorizontalRule />
+            <EuiSpacer size='m' />
+            <EuiFlexGroup justifyContent='flexEnd'>
+              <EuiFlexItem grow={false}>
+                <EuiFlexGroup alignItems='center'>
+                  <EuiFlexItem grow={false}>
+                    <EuiText size='s' color='subdued'>
+                      <p>64 results</p>
+                    </EuiText>
                   </EuiFlexItem>
-                  <EuiFlexItem>
-                    <DxPopularCard />
+                  <EuiFlexItem grow={false}>
+                    <EuiBadge
+                      color='hollow'
+                      iconType='arrowLeft'
+                      iconSide='right'
+                      href='#'
+                    />
+                  </EuiFlexItem>
+                  <EuiFlexItem grow={false}>
+                    <EuiBadge
+                      color='hollow'
+                      iconType='arrowRight'
+                      iconSide='right'
+                      href='#'
+                    />
+                  </EuiFlexItem>
+                  <EuiFlexItem grow={false}>
+                    <EuiText size='s' color='subdued'>
+                      <p>Page 1-6</p>
+                    </EuiText>
                   </EuiFlexItem>
                 </EuiFlexGroup>
               </EuiFlexItem>
             </EuiFlexGroup>
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <EuiHorizontalRule />
-            <EuiSpacer size='m' />
-            <PostList>
-              {props.allDocsData.map(
-                ({ id, date, title, abstract, icon }: any) => (
-                  <SearchResult key={id}>
-                    <Link href={`/docs/${id}`}>
-                      <EuiPanel>
-                        <EuiFlexGroup direction='column' gutterSize='m'>
-                          <EuiFlexItem>
-                            <EuiFlexGroup gutterSize='m' alignItems='center'>
-                              <EuiFlexItem grow={false}>
-                                <EuiIcon type={icon} size='l' />
-                              </EuiFlexItem>
-                              <EuiFlexItem>
-                                <EuiTitle size='xs'>
-                                  <h5>{title}</h5>
-                                </EuiTitle>
-                              </EuiFlexItem>
-                            </EuiFlexGroup>
-                          </EuiFlexItem>
-                          <EuiFlexItem>
-                            <EuiText>
-                              <p>{abstract}</p>
-                            </EuiText>
-                            <EuiSpacer size='s' />
-                            <EuiText size='s' color='subdued'>
-                              <p>
-                                Last updated <Date dateString={date} />
-                              </p>
-                            </EuiText>
-                          </EuiFlexItem>
-                        </EuiFlexGroup>
-                      </EuiPanel>
-                    </Link>
-                  </SearchResult>
+            <EuiSpacer size='xxl' />
+            <EuiSpacer size='s' />
+            <EuiFlexGrid gutterSize='xl' columns={2}>
+              {allPostsData.map(
+                ({ slug, date, title, excerpt, icon, tags, index }) => (
+                  <EuiFlexItem key={index}>
+                    <DocCard
+                      slug={slug}
+                      icon={icon}
+                      title={title}
+                      excerpt={excerpt}
+                      date={date}
+                      tags={tags}
+                    />
+                  </EuiFlexItem>
                 ),
               )}
-            </PostList>
+            </EuiFlexGrid>
           </EuiFlexItem>
         </EuiFlexGroup>
       </Container>
-    </Page>
+    </BaseLayout>
   )
 }
 
+export default DocsIndex
+
 export async function getStaticProps() {
-  const allDocsData = getSortedDocsData()
+  const allPostsData = getSortedPosts()
   return {
     props: {
-      allDocsData,
+      allPostsData,
     },
   }
 }
+
+const Container = styled.section`
+  max-width: 1280px;
+  padding: ${(props: any) => props.theme.sizes.sizeL};
+  margin: 0 auto;
+  min-height: 80vh;
+`

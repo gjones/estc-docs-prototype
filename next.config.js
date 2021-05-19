@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-var-requires,@typescript-eslint/no-use-before-define,@typescript-eslint/no-empty-function,prefer-template */
-const crypto = require('crypto');
-const fs = require('fs');
-const glob = require('glob');
-const path = require('path');
-const iniparser = require('iniparser');
+const crypto = require('crypto')
+const fs = require('fs')
+const glob = require('glob')
+const path = require('path')
+const iniparser = require('iniparser')
 
-const withBundleAnalyzer = require('@next/bundle-analyzer');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const { IgnorePlugin, NormalModuleReplacementPlugin } = require('webpack');
+const withBundleAnalyzer = require('@next/bundle-analyzer')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const { IgnorePlugin, NormalModuleReplacementPlugin } = require('webpack')
 
 /**
  * If you are deploying your site under a directory other than `/` e.g.
@@ -15,11 +15,17 @@ const { IgnorePlugin, NormalModuleReplacementPlugin } = require('webpack');
  * We don't need this during local development, because everything is
  * available under `/`.
  */
-const usePathPrefix = process.env.PATH_PREFIX === 'true';
+const usePathPrefix = process.env.PATH_PREFIX === 'true'
 
-const pathPrefix = usePathPrefix ? derivePathPrefix() : '';
+const pathPrefix = usePathPrefix ? derivePathPrefix() : ''
 
-const themeConfig = buildThemeConfig();
+const themeConfig = buildThemeConfig()
+
+const withMDX = require('@next/mdx')()
+
+module.exports = withMDX({
+  pageExtensions: ['js', 'mdx'],
+})
 
 const nextConfig = {
   /** Disable the `X-Powered-By: Next.js` response header. */
@@ -60,9 +66,9 @@ const nextConfig = {
     // browser by default. We need to configure the build so that these
     // features are either ignored or replaced with stub implementations.
     if (isServer) {
-      config.externals = config.externals.map(eachExternal => {
+      config.externals = config.externals.map((eachExternal) => {
         if (typeof eachExternal !== 'function') {
-          return eachExternal;
+          return eachExternal
         }
 
         return (context, request, callback) => {
@@ -70,29 +76,29 @@ const nextConfig = {
             request.indexOf('@elastic/eui') > -1 ||
             request.indexOf('react-ace') > -1
           ) {
-            return callback();
+            return callback()
           }
 
-          return eachExternal(context, request, callback);
-        };
-      });
+          return eachExternal(context, request, callback)
+        }
+      })
 
       // Replace `react-ace` with an empty module on the server.
       // https://webpack.js.org/loaders/null-loader/
       config.module.rules.push({
         test: /react-ace/,
         use: 'null-loader',
-      });
+      })
 
       // Mock HTMLElement on the server-side
       const definePluginId = config.plugins.findIndex(
-        p => p.constructor.name === 'DefinePlugin'
-      );
+        (p) => p.constructor.name === 'DefinePlugin',
+      )
 
       config.plugins[definePluginId].definitions = {
         ...config.plugins[definePluginId].definitions,
         HTMLElement: function () {},
-      };
+      }
     }
 
     // Copy theme CSS files into `public`
@@ -103,26 +109,25 @@ const nextConfig = {
       // If you need to highlight more than just JSON, edit the file below.
       new NormalModuleReplacementPlugin(
         /^highlight\.js$/,
-        path.join(__dirname, `src/lib/highlight.ts`)
+        path.join(__dirname, `src/lib/highlight.ts`),
       ),
 
       new NormalModuleReplacementPlugin(
         /^lowlight$/,
-        path.join(__dirname, `src/lib/lowlight.ts`)
+        path.join(__dirname, `src/lib/lowlight.ts`),
       ),
 
       // Moment ships with a large number of locales. Exclude them, leaving
       // just the default English locale. If you need other locales, see:
       // https://create-react-app.dev/docs/troubleshooting/#momentjs-locales-are-missing
-      new IgnorePlugin(/^\.\/locale$/, /moment$/)
-    );
+      new IgnorePlugin(/^\.\/locale$/, /moment$/),
+    )
 
-    config.resolve.mainFields = ['module', 'main'];
+    config.resolve.mainFields = ['module', 'main']
 
-    return config;
+    return config
   },
-
-};
+}
 
 /**
  * Enhances the Next config with the ability to:
@@ -133,7 +138,7 @@ const nextConfig = {
 
 module.exports = withBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
-})(nextConfig);
+})(nextConfig)
 
 /**
  * Find all EUI themes and construct a theme configuration object.
@@ -156,44 +161,44 @@ function buildThemeConfig() {
       '@elastic',
       'eui',
       'dist',
-      'eui_theme_*.min.css'
-    )
-  );
+      'eui_theme_*.min.css',
+    ),
+  )
 
   const themeConfig = {
     availableThemes: [],
     copyConfig: [],
-  };
+  }
 
   for (const each of themeFiles) {
-    const basename = path.basename(each, '.min.css');
+    const basename = path.basename(each, '.min.css')
 
-    const themeId = basename.replace(/^eui_theme_/, '');
+    const themeId = basename.replace(/^eui_theme_/, '')
 
     const themeName =
-      themeId[0].toUpperCase() + themeId.slice(1).replace(/_/g, ' ');
+      themeId[0].toUpperCase() + themeId.slice(1).replace(/_/g, ' ')
 
-    const publicPath = `themes/${basename}.${hashFile(each)}.min.css`;
+    const publicPath = `themes/${basename}.${hashFile(each)}.min.css`
     const toPath = path.join(
       __dirname,
       `public`,
       `themes`,
-      `${basename}.${hashFile(each)}.min.css`
-    );
+      `${basename}.${hashFile(each)}.min.css`,
+    )
 
     themeConfig.availableThemes.push({
       id: themeId,
       name: themeName,
       publicPath,
-    });
+    })
 
     themeConfig.copyConfig.push({
       from: each,
       to: toPath,
-    });
+    })
   }
 
-  return themeConfig;
+  return themeConfig
 }
 
 /**
@@ -204,13 +209,13 @@ function buildThemeConfig() {
  * @return string
  */
 function hashFile(filePath) {
-  const hash = crypto.createHash(`sha256`);
-  const fileData = fs.readFileSync(filePath);
-  hash.update(fileData);
-  const fullHash = hash.digest(`hex`);
+  const hash = crypto.createHash(`sha256`)
+  const fileData = fs.readFileSync(filePath)
+  hash.update(fileData)
+  const fullHash = hash.digest(`hex`)
 
   // Use a hash length that matches what Webpack does
-  return fullHash.substr(0, 20);
+  return fullHash.substr(0, 20)
 }
 
 /**
@@ -228,29 +233,35 @@ function hashFile(filePath) {
  * repository name is what will be used to serve the site.
  */
 function derivePathPrefix() {
-  const gitConfigPath = path.join(__dirname, '.git', 'config');
+  const gitConfigPath = path.join(__dirname, '.git', 'config')
 
   if (fs.existsSync(gitConfigPath)) {
-    const gitConfig = iniparser.parseSync(gitConfigPath);
+    const gitConfig = iniparser.parseSync(gitConfigPath)
 
     if (gitConfig['remote "origin"'] != null) {
-      const originUrl = gitConfig['remote "origin"'].url;
+      const originUrl = gitConfig['remote "origin"'].url
 
       // eslint-disable-next-line prettier/prettier
-      return '/' + originUrl.split('/').pop().replace(/\.git$/, '');
+      return (
+        '/' +
+        originUrl
+          .split('/')
+          .pop()
+          .replace(/\.git$/, '')
+      )
     }
   }
 
-  const packageJsonPath = path.join(__dirname, 'package.json');
+  const packageJsonPath = path.join(__dirname, 'package.json')
 
   if (fs.existsSync(packageJsonPath)) {
-    const { name: packageName } = require(packageJsonPath);
+    const { name: packageName } = require(packageJsonPath)
     // Strip out any username / namespace part. This works even if there is
     // no username in the package name.
-    return '/' + packageName.split('/').pop();
+    return '/' + packageName.split('/').pop()
   }
 
   throw new Error(
-    "Can't derive path prefix, as neither .git/config nor package.json exists"
-  );
+    "Can't derive path prefix, as neither .git/config nor package.json exists",
+  )
 }

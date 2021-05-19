@@ -1,20 +1,19 @@
 import React, { FunctionComponent } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
-import Page from '../components/layouts/base'
+import Page from '../components/layouts/base_layout'
+import IconLink from '../components/chrome/links/icon_link'
+import MissionCard from '../components/cards/mission_card'
+import DocCard from '../components/cards/doc_card'
 
 import {
   EuiFlexGroup,
   EuiFlexGrid,
   EuiFlexItem,
   EuiHeaderBreadcrumbs,
-  EuiLink,
   EuiSpacer,
   EuiTitle,
 } from '@elastic/eui'
-import DxMissionCard from '../components/cards/dxMissionCard'
-import PopularContentCard from '../components/cards/popularContentCard'
-import DxLink from '../components/links/dxLinks'
 
 const FeatureBackground = styled.div`
   margin: 0 auto;
@@ -59,45 +58,45 @@ const Index: FunctionComponent = () => (
             <EuiFlexItem>
               <EuiFlexGrid columns={3} gutterSize='xl'>
                 <EuiFlexItem>
-                  <DxMissionCard
-                    description='New in town? Not to worry, we’ll give you the tour, get up and running ingesting your data in just a few minutes.'
-                    imageSrc='https://gareth-misc.s3.amazonaws.com/welcome-blue.svg'
-                    link='/getting-started/'
-                  />
+                  <MissionCard />
                 </EuiFlexItem>
                 <EuiFlexItem>
-                  <DxMissionCard
+                  <MissionCard
                     title='Adding search to your website'
-                    description='We’ll walk you through how you can easily add a search bar to your website or native app.'
-                    imageSrc='https://gareth-misc.s3.amazonaws.com/welcome-pink.svg'
+                    description='We’ll walk you through how to quickly and easily add a search experience to your website or native app.'
+                    imgSrc='https://gareth-misc.s3.amazonaws.com/abstract/green-circle.svg'
+                    backgroundX='80%;'
                   />
                 </EuiFlexItem>
                 <EuiFlexItem>
-                  <DxMissionCard
+                  <MissionCard
                     title='Observing your logs &amp; metrics'
                     description='Ingest logs and metrics from thousands of different services. Start querying, and visualising them in no time at all. '
-                    imageSrc='https://gareth-misc.s3.amazonaws.com/welcome-green.svg'
+                    imgSrc='https://gareth-misc.s3.amazonaws.com/abstract/grey-edging.svg'
+                    backgroundX='100%;'
                   />
                 </EuiFlexItem>
                 <EuiFlexItem>
-                  <DxMissionCard
+                  <MissionCard
                     title='Protecting your data &amp; employees'
                     description='Get started with Endpoint security, SIEM, threat hunting and more.'
-                    imageSrc='https://gareth-misc.s3.amazonaws.com/welcome-blue.svg'
+                    imgSrc='https://gareth-misc.s3.amazonaws.com/abstract/orange-shape.svg'
                   />
                 </EuiFlexItem>
                 <EuiFlexItem>
-                  <DxMissionCard
+                  <MissionCard
                     title='Account, Organizations, and Billing'
                     description='Understand your bills, add new users and roles.'
-                    imageSrc='https://gareth-misc.s3.amazonaws.com/welcome-pink.svg'
+                    imgSrc='https://gareth-misc.s3.amazonaws.com/abstract/blue-circle.svg'
+                    backgroundX='60%;'
                   />
                 </EuiFlexItem>
                 <EuiFlexItem>
-                  <DxMissionCard
+                  <MissionCard
                     title='API Reference and Language clients'
                     description='View Elasticsearch and Cloud public API reference materials.'
-                    imageSrc='https://gareth-misc.s3.amazonaws.com/welcome-green.svg'
+                    imgSrc='https://gareth-misc.s3.amazonaws.com/abstract/green-pink-circle.svg'
+                    backgroundX='20%;'
                   />
                 </EuiFlexItem>
               </EuiFlexGrid>
@@ -110,21 +109,21 @@ const Index: FunctionComponent = () => (
                   <EuiTitle size='s'>
                     <h3>Recently visited</h3>
                   </EuiTitle>
-                  <EuiSpacer size='s' />
+                  <EuiSpacer size='m' />
                 </EuiFlexItem>
                 <EuiFlexItem>
                   <EuiFlexGrid columns={4} gutterSize='xl'>
                     <EuiFlexItem grow={false}>
-                      <DxLink />
+                      <IconLink />
                     </EuiFlexItem>
                     <EuiFlexItem grow={false}>
-                      <DxLink title='Ruby on Rails integrations' />
+                      <IconLink title='Ruby on Rails integrations' />
                     </EuiFlexItem>
                     <EuiFlexItem grow={false}>
-                      <DxLink title='Plugin: enterprise-search-ruby' />
+                      <IconLink title='Plugin: enterprise-search-ruby' />
                     </EuiFlexItem>
                     <EuiFlexItem grow={false}>
-                      <DxLink title='APM Ruby Agent Reference' />
+                      <IconLink title='APM Ruby Agent Reference' />
                     </EuiFlexItem>
                   </EuiFlexGrid>
                 </EuiFlexItem>
@@ -137,40 +136,42 @@ const Index: FunctionComponent = () => (
       <Container>
         <EuiFlexGroup direction='column'>
           <EuiFlexItem>
-            <EuiFlexGroup direction='column'>
+            <EuiFlexGroup direction='column' gutterSize='xl'>
               <EuiSpacer size='m' />
               <EuiFlexItem>
                 <EuiTitle size='s'>
                   <h3>May's popular content</h3>
                 </EuiTitle>
+                <EuiSpacer size='xs' />
               </EuiFlexItem>
               <EuiFlexItem>
                 <EuiFlexGrid columns={2} gutterSize='xl'>
                   <EuiFlexItem>
-                    <PopularContentCard />
+                    <DocCard />
                   </EuiFlexItem>
                   <EuiFlexItem>
-                    <PopularContentCard />
+                    <DocCard />
                   </EuiFlexItem>
                   <EuiFlexItem>
-                    <PopularContentCard
+                    <DocCard
                       product='Elastic Security'
                       icon='logoSecurity'
                       title='Intro to threat hunting'
+                      tags={['siem', 'threat hunting']}
                     />
                   </EuiFlexItem>
                   <EuiFlexItem>
-                    <PopularContentCard
+                    <DocCard
                       product='Elastic Observability'
                       icon='logoObservability'
                       title='Viewing Nginx production logs'
                     />
                   </EuiFlexItem>
                   <EuiFlexItem>
-                    <PopularContentCard />
+                    <DocCard />
                   </EuiFlexItem>
                   <EuiFlexItem>
-                    <PopularContentCard
+                    <DocCard
                       product='Elastic Enterprise Search'
                       icon='logoEnterpriseSearch'
                       title='Getting started with workplace search'

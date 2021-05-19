@@ -66,6 +66,9 @@ const defaultTheme = {
 
 const light = {
   background: defaultTheme.colours.light_emptyShade,
+  border: {
+    subdued: defaultTheme.colours.light_lightShade,
+  },
   header: {
     background: defaultTheme.colours.light_lightestShade,
     text: defaultTheme.colours.light_emptyShade,
@@ -79,6 +82,16 @@ const light = {
   },
   footer: {
     background: defaultTheme.colours.light_primary,
+  },
+  steps: {
+    background: defaultTheme.colours.light_lightestShade,
+    borderColour: defaultTheme.colours.light_lightShade,
+    borderRadius: defaultTheme.borderRadius.radiusS,
+  },
+  searchSelect: {
+    background: defaultTheme.colours.light_emptyShade,
+    borderColour: defaultTheme.colours.light_lightShade,
+    borderRadius: defaultTheme.borderRadius.radiusS,
   },
   text: {
     default: defaultTheme.colours.light_darkestShade,
@@ -94,6 +107,9 @@ const light = {
 
 const dark = {
   background: defaultTheme.colours.dark_pageBackground,
+  border: {
+    subdued: defaultTheme.colours.dark_lightShade,
+  },
   header: {
     background: defaultTheme.colours.dark_lightShade,
     text: defaultTheme.colours.dark_emptyShade,
@@ -107,6 +123,14 @@ const dark = {
   },
   footer: {
     background: defaultTheme.colours.dark_primary,
+  },
+  steps: {
+    background: defaultTheme.colours.dark_darkestShade,
+    borderColour: defaultTheme.colours.dark_lightShade,
+  },
+  searchSelect: {
+    background: defaultTheme.colours.dark_emptyShade,
+    borderColour: defaultTheme.colours.dark_darkShade,
   },
   text: {
     default: defaultTheme.colours.dark_darkestShade,

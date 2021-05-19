@@ -13,7 +13,7 @@
     ],
     "paths": {
       "@layouts/*": ["./src/components/layouts/*"],
-    }, 
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -27,7 +27,7 @@
     "jsx": "preserve"
   },
   "include": [
-    "./src/**/*", "./src/lib/docs.js",
+    "./src/**/*", "src/lib/posts.js",
   ],
   "exclude": [
     "node_modules"
