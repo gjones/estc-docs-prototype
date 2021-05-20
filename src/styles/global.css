@@ -1,3 +1,16 @@
 html {
   background: #25282f;
 }
+
+.isSticky input {
+  background: transparent;
+  margin-top: 0.6rem!important;
+  height: 32px!important;
+  border: 1px solid rgba(255,255,255,0.4);
+  box-shadow: inset 0 0 0 1px hsl(0deg 0% 100% / 30%);
+  border-radius: 4px;
+}
+
+.isSticky svg {
+  color: rgba(255,255,255,0.4);;
+}

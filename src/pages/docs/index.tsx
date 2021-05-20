@@ -1,4 +1,3 @@
-import BaseLayout from '../../components/layouts/base'
 import { getSortedPosts } from '../../lib/posts'
 import styled from 'styled-components'
 
@@ -9,14 +8,14 @@ import {
   EuiFlexItem,
   EuiHeaderBreadcrumbs,
   EuiHorizontalRule,
-  EuiPanel,
   EuiSelect,
   EuiSpacer,
   EuiText,
   EuiTitle,
 } from '@elastic/eui'
-import DocCard from '../../components/cards/doc_card'
 
+import BaseLayout from '../../components/layouts/base_layout'
+import DocCard from '../../components/cards/doc_card'
 
 const headerBreadcrumbs = (
   <EuiHeaderBreadcrumbs

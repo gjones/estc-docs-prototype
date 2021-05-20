@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, createRef, useRef, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
 
@@ -15,12 +15,33 @@ import {
 } from '@elastic/eui'
 
 export default function SearchBarArea(props: any) {
-  const { placeholder, spacerSize, subtitle } = props
+  const { placeholder, spacerSize, subtitle, sticky } = props
   const [isClearable] = useState(true)
   const [value, setValue] = useState()
+  const [isOpen, setIsOpen] = useState(false)
+  const [isSticky, setIsSticky] = useState(true)
+  const headerRef = useRef()
   const router = useRouter()
   let subTitle
-  const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+    const header = headerRef.current
+    const observer = new IntersectionObserver(
+      ([e]) => {
+        setIsSticky(e.intersectionRatio < 1)
+      },
+      { threshold: [1] },
+    )
+
+    if (header) {
+      observer.observe(header)
+    }
+
+    // unmount
+    return () => {
+      observer.unobserve(header)
+    }
+  }, [headerRef])
 
   const sendUser = (e) => {
     router.push('/docs/?' + value)
@@ -43,37 +64,42 @@ export default function SearchBarArea(props: any) {
   }
 
   return (
-    <SearchBarSection>
-      <EuiFlexGroup gutterSize='none' direction='column'>
-        <EuiFlexItem>
-          <EuiSpacer size={spacerSize} />
-          <EuiSpacer size='s' />
-          <EuiTitle size='l'>
-            <MainTitle>Elastic Documentation</MainTitle>
-          </EuiTitle>
-        </EuiFlexItem>
-        {subTitle}
-        <EuiHideFor sizes={['xs', 's']}>
-          <EuiSpacer size={spacerSize} />
-        </EuiHideFor>
-        <EuiFlexItem>
-          <EuiFlexGroup gutterSize='none' justifyContent='center'>
-            <EuiFlexItem>
-              <MainSearch>
-                <EuiFieldSearch onClick={() => setIsOpen(!isOpen)}
-                  placeholder={placeholder}
-                  value={value}
-                  //onChange={(e) => onChange(e)}
-                  isClearable={isClearable}
-                  onSearch={sendUser}
-                />
-              </MainSearch>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-      <SuggestionSelect isOpen={isOpen} />
-    </SearchBarSection>
+    <Fragment>
+      <SearchBarSection>
+        <EuiFlexGroup gutterSize='none' direction='column'>
+          <EuiFlexItem>
+            <EuiSpacer size={spacerSize} />
+            <EuiSpacer size='s' />
+            <EuiTitle size='l'>
+              <MainTitle>Elastic Documentation</MainTitle>
+            </EuiTitle>
+          </EuiFlexItem>
+          {subTitle}
+          <EuiHideFor sizes={['xs', 's']}>
+            <EuiSpacer size={spacerSize} />
+          </EuiHideFor>
+          <EuiFlexItem>
+            <EuiFlexGroup gutterSize='none' justifyContent='center'>
+              <EuiFlexItem></EuiFlexItem>
+            </EuiFlexGroup>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+        <SuggestionSelect isOpen={isOpen} />
+      </SearchBarSection>
+
+      <MainSearch
+        className={isSticky ? 'isSticky' : 'isNotSticky'}
+        ref={headerRef}>
+        <EuiFieldSearch
+          onClick={() => setIsOpen(!isOpen)}
+          placeholder={placeholder}
+          value={value}
+          //onChange={(e) => onChange(e)}
+          isClearable={isClearable}
+          onSearch={sendUser}
+        />
+      </MainSearch>
+    </Fragment>
   )
 }
 
@@ -85,7 +111,7 @@ SearchBarArea.defaultProps = {
 
 const SearchBarSection = styled.section`
   margin-top: 6.5rem;
-  background-color: ${(props) => props.theme.colours.light_primary};
+  background-color: ${(props: any) => props.theme.colours.light_primary};
   background: url(https://gareth-misc.s3.amazonaws.com/docs-header-bg-default.png)
     0 0 no-repeat;
   background-size: 100% auto;
@@ -104,24 +130,29 @@ const SearchBarSection = styled.section`
 
 const MainTitle = styled.h1`
   text-align: center;
-  font-size: ${(props) => props.theme.fontSizes.textLargest};
-  color: ${(props) => props.theme.header.text};
+  font-size: ${(props: any) => props.theme.fontSizes.textLargest};
+  color: ${(props: any) => props.theme.header.text};
 
   @media only screen and ${(props) => props.theme.mediaQueries.smallScreens} {
-    font-size: ${(props) => props.theme.fontSizes.textLarger};
+    font-size: ${(props: any) => props.theme.fontSizes.textLarger};
   }
 `
 
 const Subtitle = styled.p`
     text-align: center;
-    color: ${(props) => props.theme.header.text}};
+    color: ${(props: any) => props.theme.header.text}};
 
     @media only screen and ${(props) => props.theme.mediaQueries.smallScreens} {
       padding: 0 ${(props) => props.theme.sizes.sizeL};
     }
   `
 
-const MainSearch = styled.div`
+const MainSearch = styled.header`
+  margin-top: -3rem;
+  position: sticky;
+  top: -1px;
+  z-index: 1000;
+
   .euiFormControlLayout {
     max-width: 50rem;
     margin: 0 auto;

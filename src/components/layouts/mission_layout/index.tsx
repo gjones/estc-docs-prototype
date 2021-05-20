@@ -15,7 +15,7 @@ import {
 
 import Header from '../../chrome/header'
 import Footer from '../../chrome/footer'
-import SearchBarArea from '../../chrome/searchBar'
+import SearchBarArea from '../../chrome/search_bar'
 
 type Props = {
   title: string

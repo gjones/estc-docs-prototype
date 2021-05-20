@@ -147,10 +147,10 @@ const Index: FunctionComponent = () => (
               <EuiFlexItem>
                 <EuiFlexGrid columns={2} gutterSize='xl'>
                   <EuiFlexItem>
-                    <DocCard />
+                    <DocCard index='1000' />
                   </EuiFlexItem>
                   <EuiFlexItem>
-                    <DocCard />
+                    <DocCard slug='indexing-documents/' index='1001' />
                   </EuiFlexItem>
                   <EuiFlexItem>
                     <DocCard
@@ -158,6 +158,8 @@ const Index: FunctionComponent = () => (
                       icon='logoSecurity'
                       title='Intro to threat hunting'
                       tags={['siem', 'threat hunting']}
+                      slug='blizzard-data-pipeline/'
+                      index='1002'
                     />
                   </EuiFlexItem>
                   <EuiFlexItem>
@@ -165,16 +167,20 @@ const Index: FunctionComponent = () => (
                       product='Elastic Observability'
                       icon='logoObservability'
                       title='Viewing Nginx production logs'
+                      slug='ingest-data-with-python/'
+                      index='1003'
                     />
                   </EuiFlexItem>
                   <EuiFlexItem>
-                    <DocCard />
+                    <DocCard slug='ingest-data-from-splunk/' index='1004' />
                   </EuiFlexItem>
                   <EuiFlexItem>
                     <DocCard
                       product='Elastic Enterprise Search'
                       icon='logoEnterpriseSearch'
                       title='Getting started with workplace search'
+                      slug='this-week-in-kibana/'
+                      index='1005'
                     />
                   </EuiFlexItem>
                 </EuiFlexGrid>

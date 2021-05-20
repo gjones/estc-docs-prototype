@@ -32,7 +32,9 @@ export default function Posts({ source, frontMatter }) {
   )
 
   return (
-    <ArticleLayout title={frontMatter.title} pageBreadcrumbs={headerBreadcrumbs}>
+    <ArticleLayout
+      title={frontMatter.title}
+      pageBreadcrumbs={headerBreadcrumbs}>
       {content}
     </ArticleLayout>
   )

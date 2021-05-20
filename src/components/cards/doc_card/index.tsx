@@ -44,8 +44,8 @@ export default function DocCard(props: any) {
             </EuiText>
             <EuiSpacer size='m' />
             <EuiFlexGroup gutterSize='s'>
-              {tags.map((tags) => (
-                <EuiFlexItem grow={false}>
+              {tags.map((tags, index) => (
+                <EuiFlexItem grow={false} key={index}>
                   <EuiBadge color='hollow'>{tags}</EuiBadge>
                 </EuiFlexItem>
               ))}
