@@ -21,7 +21,7 @@ This is a quick prototype/proof of concept for a future version of Elastic Docs.
     Clone the repository:
 
     ```sh
-    git clone https://github.com/elastic/next-eui-starter.git my-eui-starter
+    git clone https://github.com/gjones/estc-docs-prototype.git estc-docs-prototype
     ```
 
 1.  **Start developing.**
