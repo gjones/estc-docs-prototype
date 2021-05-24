@@ -1,6 +1,6 @@
 import React, { Fragment, useRef, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 import SuggestionSelect from './suggestion_select'
 
@@ -177,11 +177,22 @@ const MainSearch = styled.header`
   }
 `
 
+const PinkSlide = keyframes`
+  0% { top: 5%; right: 5%;}
+  100% { top: 5.2%; right: 5.4%;}
+`
+
 const PinkCircleImage = styled.img`
   position: absolute;
-  top: 5%;
-  right: 5%;
+  transform-origin: 5% 5%;
+  transition: transform 1s ease-in-out 0s;
+  animation-duration: 4s;
+  animation-delay: 4.5s;
+  animation-name: ${PinkSlide};
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 `
+
 const BlueCircleImage = styled.img`
   position: absolute;
   top: 15%;
