@@ -34,10 +34,6 @@ const ContentWrapper = styled.section`
   }
 `
 
-const ArticleWrapper = styled.div`
-  max-width: 94%;
-`
-
 export default class SearchLayout extends Component<Props> {
   render() {
     const { title, pageBreadcrumbs } = this.props
@@ -80,7 +76,12 @@ export default class SearchLayout extends Component<Props> {
                               <AdCard title='Elastic Cloud' />
                             </EuiFlexItem>
                             <EuiFlexItem grow={false}>
-                              <AdCard title='Elastic Support' description='Get the answers you need from our team of experts. Available 24/7.' imgSrc='https://gareth-misc.s3.amazonaws.com/abstract/yellow-grey-support.svg' imgY='4rem' />
+                              <AdCard
+                                title='Elastic Support'
+                                description='Get the answers you need from our team of experts. Available 24/7.'
+                                imgSrc='https://gareth-misc.s3.amazonaws.com/abstract/yellow-grey-support.svg'
+                                imgY='4rem'
+                              />
                             </EuiFlexItem>
                           </EuiFlexGroup>
                         </EuiFlexItem>

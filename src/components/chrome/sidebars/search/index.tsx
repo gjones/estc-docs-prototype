@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 import {
@@ -86,7 +86,7 @@ export default function SearchSidebar() {
               },
             ]}
             idSelected='1'
-            onChange={(optionId) => {}}
+            onChange={() => {}}
           />
         </EuiFlexItem>
         <EuiHorizontalRule margin='s' />
@@ -115,5 +115,5 @@ export default function SearchSidebar() {
 }
 
 const Wrapper = styled.div`
-  padding: 0 ${(props) => props.theme.sizes.sizeXL};
+  padding: 0 ${(props: any) => props.theme.sizes.sizeXL};
 `

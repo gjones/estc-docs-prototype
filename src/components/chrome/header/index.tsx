@@ -22,21 +22,21 @@ export default function Header(props: Props) {
   return (
     <Fragment>
       <EuiHeader theme='dark' position='fixed'>
-      <EuiHeaderSection side='left'>
-        <EuiHeaderSectionItem border='right'>
-          <EuiHeaderLogo iconType='logoElastic' href='/'>
-            <ElasticMark />
-          </EuiHeaderLogo>
+        <EuiHeaderSection side='left'>
+          <EuiHeaderSectionItem border='right'>
+            <EuiHeaderLogo iconType='logoElastic' href='/'>
+              <ElasticMark />
+            </EuiHeaderLogo>
           </EuiHeaderSectionItem>
           <EuiHeaderSectionItem>
-          <EuiHeaderLinks>
-            <EuiHeaderLink>Products</EuiHeaderLink>
-            <EuiHeaderLink>Customers</EuiHeaderLink>
-            <EuiHeaderLink>Learn</EuiHeaderLink>
-            <EuiHeaderLink>Company</EuiHeaderLink>
-            <EuiHeaderLink>Pricing</EuiHeaderLink>
-          </EuiHeaderLinks>
-        </EuiHeaderSectionItem>
+            <EuiHeaderLinks>
+              <EuiHeaderLink>Products</EuiHeaderLink>
+              <EuiHeaderLink>Customers</EuiHeaderLink>
+              <EuiHeaderLink>Learn</EuiHeaderLink>
+              <EuiHeaderLink>Company</EuiHeaderLink>
+              <EuiHeaderLink>Pricing</EuiHeaderLink>
+            </EuiHeaderLinks>
+          </EuiHeaderSectionItem>
         </EuiHeaderSection>
 
         <EuiHeaderLinks>

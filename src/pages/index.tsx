@@ -15,24 +15,6 @@ import {
   EuiTitle,
 } from '@elastic/eui'
 
-const FeatureBackground = styled.div`
-  margin: 0 auto;
-  background: ${(props) => props.theme.feature.background}};
-`
-
-const Container = styled.section`
-  max-width: 1280px;
-  padding: ${(props) => props.theme.sizes.sizeL}};
-  margin: 0 auto;
-`
-
-const SupportSection = styled.section`
-  text-align: center;
-  .euiTitle {
-    font-weight: ${(props) => props.theme.fontWeights.fontExtraBold};
-  }
-`
-
 const headerBreadcrumbs = (
   <EuiHeaderBreadcrumbs
     breadcrumbs={[
@@ -140,7 +122,7 @@ const Index: FunctionComponent = () => (
               <EuiSpacer size='m' />
               <EuiFlexItem>
                 <EuiTitle size='s'>
-                  <h3>May's popular content</h3>
+                  <h3>May&lsquo;s popular content</h3>
                 </EuiTitle>
                 <EuiSpacer size='xs' />
               </EuiFlexItem>
@@ -209,3 +191,21 @@ const Index: FunctionComponent = () => (
 )
 
 export default Index
+
+const FeatureBackground = styled.div`
+  margin: 0 auto;
+  background: ${(props) => props.theme.feature.background}};
+`
+
+const Container = styled.section`
+  max-width: 1280px;
+  padding: ${(props) => props.theme.sizes.sizeL}};
+  margin: 0 auto;
+`
+
+const SupportSection = styled.section`
+  text-align: center;
+  .euiTitle {
+    font-weight: ${(props) => props.theme.fontWeights.fontExtraBold};
+  }
+`

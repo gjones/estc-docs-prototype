@@ -10,7 +10,6 @@ import {
   EuiLink,
   EuiSpacer,
   EuiText,
-  EuiTitle,
 } from '@elastic/eui'
 import SelectItem from './select_item'
 
@@ -46,7 +45,7 @@ export default function SuggestionSelect(props: any) {
                       },
                     ]}
                     idSelected='1'
-                    onChange={(optionId) => {}}
+                    onChange={() => {}}
                   />
                 </TypeSelector>
               </EuiFlexItem>

@@ -3,7 +3,7 @@ import { DocSummary } from '../doc_summary'
 
 const AllComponents = {
   DocCallOut,
-  DocSummary
+  DocSummary,
 }
 
 export default AllComponents

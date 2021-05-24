@@ -1,12 +1,10 @@
 import React from 'react'
-import Link from 'next/link'
 import styled from 'styled-components'
 
 import {
   EuiButton,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiIcon,
   EuiPanel,
   EuiSpacer,
   EuiText,
@@ -17,7 +15,7 @@ export default function AdCard(props: any) {
   const { title, description, buttonText, imgSrc, imgY, imgX } = props
 
   const Card = styled.div`
-  max-width: 17rem;
+    max-width: 17rem;
     .euiPanel {
       background: url(${imgSrc}) no-repeat ${imgX} ${imgY};
     }
@@ -34,9 +32,7 @@ export default function AdCard(props: any) {
           </EuiFlexItem>
           <EuiFlexItem>
             <EuiText size='s' color='subdued'>
-              <p>
-                {description}
-              </p>
+              <p>{description}</p>
             </EuiText>
           </EuiFlexItem>
           <EuiFlexItem>
@@ -51,8 +47,10 @@ export default function AdCard(props: any) {
 
 AdCard.defaultProps = {
   title: 'Elastic Cloud',
-  description: 'Run Elastic solutions on Amazon Web Services, Microsoft Azure, or Google Cloud.',
-  imgSrc: 'https://gareth-misc.s3.amazonaws.com/abstract/cloudblue-grey-cloud.svg',
+  description:
+    'Run Elastic solutions on Amazon Web Services, Microsoft Azure, or Google Cloud.',
+  imgSrc:
+    'https://gareth-misc.s3.amazonaws.com/abstract/cloudblue-grey-cloud.svg',
   imgX: '100%',
   imgY: '0.5rem',
   buttonText: 'Start a free trial',

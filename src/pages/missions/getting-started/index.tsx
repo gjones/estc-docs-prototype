@@ -3,24 +3,19 @@ import Link from 'next/link'
 import styled from 'styled-components'
 
 import {
-  EuiBadge,
   EuiFlexGroup,
   EuiFlexGrid,
   EuiFlexItem,
   EuiHeaderBreadcrumbs,
-  EuiIcon,
   EuiHorizontalRule,
-  EuiPanel,
-  EuiSelect,
   EuiSpacer,
-  EuiText,
   EuiTitle,
 } from '@elastic/eui'
 
 import MissionLayout from '../../../components/layouts/mission_layout'
 import MissionStep from '../../../components/steps/mission_step'
 
-export default function GettingStarted(props: any) {
+export default function GettingStarted() {
   const headerBreadcrumbs = (
     <EuiHeaderBreadcrumbs
       breadcrumbs={[

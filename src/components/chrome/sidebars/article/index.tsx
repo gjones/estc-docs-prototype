@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 import { EuiSideNav, EuiSpacer } from '@elastic/eui'
@@ -121,5 +121,5 @@ export default function ArticleSidebar() {
 }
 
 const Wrapper = styled.div`
-  padding: 0 ${(props) => props.theme.sizes.sizeXL};
+  padding: 0 ${(props: any) => props.theme.sizes.sizeXL};
 `

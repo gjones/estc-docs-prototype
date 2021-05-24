@@ -6,12 +6,10 @@ import {
   EuiBadge,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiHorizontalRule,
   EuiIcon,
   EuiPanel,
   EuiSpacer,
   EuiText,
-  EuiTitle,
 } from '@elastic/eui'
 
 export default function DocCard(props: any) {
@@ -31,7 +29,7 @@ export default function DocCard(props: any) {
             </EuiFlexGroup>
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiText style={{fontWeight:500}}>
+            <EuiText style={{ fontWeight: 500 }}>
               <p>{title}</p>
             </EuiText>
             <EuiText color='subdued' size='s'>
@@ -70,7 +68,8 @@ DocCard.defaultProps = {
 const SearchResult = styled.div`
   margin-top: -16px;
   padding: 0 ${(props) => props.theme.sizes.sizeS};
-  border-bottom: 1px solid ${(props:any) => props.theme.colours.light_lightShade};
+  border-bottom: 1px solid
+    ${(props: any) => props.theme.colours.light_lightShade};
   &:hover {
     cursor: pointer;
 

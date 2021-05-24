@@ -2,10 +2,7 @@ import React, { FunctionComponent } from 'react'
 import { CommonProps } from '@elastic/eui'
 import styled from 'styled-components'
 
-import {
-  EuiTitle,
-  EuiText,
-} from '@elastic/eui'
+import { EuiTitle, EuiText } from '@elastic/eui'
 
 export type DocSummaryProps = CommonProps & {
   title?: string
@@ -17,7 +14,9 @@ export const DocSummary: FunctionComponent<DocSummaryProps> = ({
 }: any) => {
   return (
     <SummaryArea className='docSummary'>
-      <EuiTitle size='xs'><h3>{title}</h3></EuiTitle>
+      <EuiTitle size='xs'>
+        <h3>{title}</h3>
+      </EuiTitle>
       <EuiText>{children}</EuiText>
     </SummaryArea>
   )

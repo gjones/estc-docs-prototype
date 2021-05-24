@@ -43,7 +43,7 @@ export default function SearchBarArea(props: any) {
     }
   }, [headerRef])
 
-  const sendUser = (e) => {
+  const sendUser = () => {
     router.push('/docs/?' + value)
   }
 
@@ -115,7 +115,7 @@ SearchBarArea.defaultProps = {
 
 const SearchBarSection = styled.section`
   margin-top: 6.5rem;
-  background-color: #0076CB;
+  background-color: #0076cb;
   box-shadow: inset 0px -2px 2px rgba(200, 200, 200, 0.2);
 
   @media only screen and ${(props) => props.theme.mediaQueries.mediumScreens} {

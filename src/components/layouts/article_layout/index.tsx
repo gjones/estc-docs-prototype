@@ -35,15 +35,15 @@ const ContentWrapper = styled.section`
     background: ${(props) => props.theme.text.default};
     color: ${(props) => props.theme.colours.light_emptyShade};
   }
-  `
+`
 
 const ArticleWrapper = styled.div`
   max-width: 94%;
 `
 
 const TOC = styled.aside`
-    position: sticky;
-    top: 9rem;
+  position: sticky;
+  top: 9rem;
 
   .euiSideNav {
     position: sticky;
@@ -52,7 +52,6 @@ const TOC = styled.aside`
   .euiSideNav__content {
     background: white;
     border: none;
-
   }
 `
 
@@ -63,9 +62,7 @@ export default class ArticleLayout extends Component<Props> {
 
     let OnThisPageNav = (
       <Fragment>
-        <EuiSideNav
-          items={TOCData}
-        />
+        <EuiSideNav items={TOCData} />
       </Fragment>
     )
 
@@ -120,7 +117,7 @@ export default class ArticleLayout extends Component<Props> {
                         </EuiFlexGroup>
                         <EuiSpacer size='s' />
                         <EuiPageHeader restrictWidth pageTitle={title} />
-                        <EuiSpacer size='xl'/>
+                        <EuiSpacer size='xl' />
                         <EuiText>{this.props.children}</EuiText>
                       </ArticleWrapper>
                     </EuiFlexItem>

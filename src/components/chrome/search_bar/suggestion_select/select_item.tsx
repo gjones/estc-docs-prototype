@@ -5,12 +5,10 @@ import styled from 'styled-components'
 import {
   EuiFlexGroup,
   EuiFlexItem,
-  EuiHorizontalRule,
   EuiIcon,
   EuiPanel,
   EuiSpacer,
   EuiText,
-  EuiTitle,
 } from '@elastic/eui'
 
 export default function SuggestionItem(props: any) {
@@ -31,7 +29,7 @@ export default function SuggestionItem(props: any) {
             </EuiFlexGroup>
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiText style={{fontWeight:500}}>
+            <EuiText style={{ fontWeight: 500 }}>
               <p>{title}</p>
             </EuiText>
             <EuiText color='subdued' size='s'>
@@ -50,7 +48,7 @@ SuggestionItem.defaultProps = {
   title: 'Getting started with Elasticsearch',
   excerpt:
     'This guide tells you how to get started with: Securely connecting to Elasticsearch Service with Node.js. Ingesting data into your deployment from...',
-  slug: 'ingest-data-with-nodejs/'
+  slug: 'ingest-data-with-nodejs/',
 }
 
 const SearchResult = styled.div`

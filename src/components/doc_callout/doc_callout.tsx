@@ -13,8 +13,7 @@ export const DocCallOut: FunctionComponent<DocCallOutProps> = ({
   title,
   template,
   children,
-}: /* eslint-disable @typescript-eslint/no-explicit-any */
-any) => {
+}: any) => {
   if (template !== undefined) {
     const calloutData = DocCallOutValues.find(({ id }) => id === template)
     return (

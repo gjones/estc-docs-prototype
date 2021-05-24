@@ -1,7 +1,6 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react'
 import styled from 'styled-components'
 
-
 type Props = HTMLAttributes<SVGElement>
 
 // heavily "inspired" by https://github.com/elastic/kibana/blob/c42b99419305afcc784f1e1cf3c31acd9606747a/src/core/public/chrome/ui/header/elastic_mark.tsx

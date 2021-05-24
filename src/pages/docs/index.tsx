@@ -2,16 +2,12 @@ import { getSortedPosts } from '../../lib/posts'
 import styled from 'styled-components'
 
 import {
-  EuiBadge,
   EuiFlexGroup,
   EuiFlexGrid,
   EuiFlexItem,
   EuiHeaderBreadcrumbs,
-  EuiHorizontalRule,
-  EuiSelect,
   EuiSpacer,
   EuiText,
-  EuiTitle,
 } from '@elastic/eui'
 
 import SearchLayout from '../../components/layouts/search_layout'
@@ -33,13 +29,13 @@ const headerBreadcrumbs = (
 
 const DocsIndex = ({ allPostsData }) => {
   return (
-    <SearchLayout
-      title='Search results'
-      pageBreadcrumbs={headerBreadcrumbs}>
+    <SearchLayout title='Search results' pageBreadcrumbs={headerBreadcrumbs}>
       <Container>
         <EuiFlexGroup direction='column'>
           <EuiFlexItem>
-            <EuiText size='s' color='subdued'>Showing 64 results for Ingesting Data</EuiText>
+            <EuiText size='s' color='subdued'>
+              Showing 64 results for Ingesting Data
+            </EuiText>
           </EuiFlexItem>
           <EuiFlexItem>
             <EuiSpacer size='xl' />
