@@ -14,7 +14,7 @@ import {
   EuiTitle,
 } from '@elastic/eui'
 
-import BaseLayout from '../../components/layouts/base_layout'
+import SearchLayout from '../../components/layouts/search_layout'
 import DocCard from '../../components/cards/doc_card'
 
 const headerBreadcrumbs = (
@@ -33,92 +33,17 @@ const headerBreadcrumbs = (
 
 const DocsIndex = ({ allPostsData }) => {
   return (
-    <BaseLayout
+    <SearchLayout
       title='Search results'
-      searchSpacerSize='xxl'
-      subtitle={true}
       pageBreadcrumbs={headerBreadcrumbs}>
       <Container>
-        <EuiSpacer size='xxl' />
         <EuiFlexGroup direction='column'>
           <EuiFlexItem>
-            <EuiFlexGroup direction='row' justifyContent='center'>
-              <EuiFlexItem grow={false}>
-                <EuiSelect
-                  options={[
-                    {
-                      value: 'option_one',
-                      text: 'Sort by: Relevance',
-                    },
-                  ]}
-                />
-              </EuiFlexItem>
-              <EuiFlexItem grow={false}>
-                <EuiSelect
-                  options={[
-                    {
-                      value: 'option_one',
-                      text: 'Product: Any',
-                    },
-                  ]}
-                />
-              </EuiFlexItem>
-              <EuiFlexItem grow={false}>
-                <EuiSelect
-                  options={[
-                    {
-                      value: 'option_one',
-                      text: 'Type: Any',
-                    },
-                  ]}
-                />
-              </EuiFlexItem>
-            </EuiFlexGroup>
+            <EuiText size='s' color='subdued'>Showing 64 results for Ingesting Data</EuiText>
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiSpacer />
-            <EuiTitle>
-              <h3>Your search for 'Ingest data' returned 32 results</h3>
-            </EuiTitle>
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <EuiHorizontalRule />
-            <EuiSpacer size='m' />
-            <EuiFlexGroup justifyContent='flexEnd'>
-              <EuiFlexItem grow={false}>
-                <EuiFlexGroup alignItems='center'>
-                  <EuiFlexItem grow={false}>
-                    <EuiText size='s' color='subdued'>
-                      <p>64 results</p>
-                    </EuiText>
-                  </EuiFlexItem>
-                  <EuiFlexItem grow={false}>
-                    <EuiBadge
-                      color='hollow'
-                      iconType='arrowLeft'
-                      iconSide='right'
-                      href='#'
-                    />
-                  </EuiFlexItem>
-                  <EuiFlexItem grow={false}>
-                    <EuiBadge
-                      color='hollow'
-                      iconType='arrowRight'
-                      iconSide='right'
-                      href='#'
-                    />
-                  </EuiFlexItem>
-                  <EuiFlexItem grow={false}>
-                    <EuiText size='s' color='subdued'>
-                      <p>Page 1-6</p>
-                    </EuiText>
-                  </EuiFlexItem>
-                </EuiFlexGroup>
-              </EuiFlexItem>
-            </EuiFlexGroup>
-            <EuiSpacer size='xxl' />
-            <EuiSpacer size='s' />
-            <EuiFlexGrid gutterSize='xl' columns={2}>
+            <EuiSpacer size='xl' />
+            <EuiFlexGrid gutterSize='xl' columns={1}>
               {allPostsData.map(
                 ({ slug, date, title, excerpt, icon, tags, index }) => (
                   <EuiFlexItem key={index}>
@@ -137,7 +62,7 @@ const DocsIndex = ({ allPostsData }) => {
           </EuiFlexItem>
         </EuiFlexGroup>
       </Container>
-    </BaseLayout>
+    </SearchLayout>
   )
 }
 

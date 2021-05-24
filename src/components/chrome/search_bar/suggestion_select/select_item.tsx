@@ -31,16 +31,15 @@ export default function SuggestionItem(props: any) {
             </EuiFlexGroup>
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiTitle size='xxs'>
-              <h4>{title}</h4>
-            </EuiTitle>
+            <EuiText style={{fontWeight:500}}>
+              <p>{title}</p>
+            </EuiText>
             <EuiText color='subdued' size='s'>
               <p>{excerpt}</p>
             </EuiText>
             <EuiSpacer size='l' />
           </EuiFlexItem>
         </EuiFlexGroup>
-        <EuiHorizontalRule margin='none' />
       </SearchResult>
     </Link>
   )
@@ -57,6 +56,7 @@ SuggestionItem.defaultProps = {
 const SearchResult = styled.div`
   margin-top: -16px;
   padding: 0 ${(props) => props.theme.sizes.sizeM};
+  border-bottom: 1px solid ${(props) => props.theme.colours.light_lightShade};
   &:hover {
     cursor: pointer;
     background: ${(props) => props.theme.colours.light_lightestShade};

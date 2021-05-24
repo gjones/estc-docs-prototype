@@ -1,4 +1,4 @@
-import React, { Fragment, createRef, useRef, useState, useEffect } from 'react'
+import React, { Fragment, useRef, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
 
@@ -15,9 +15,9 @@ import {
 } from '@elastic/eui'
 
 export default function SearchBarArea(props: any) {
-  const { placeholder, spacerSize, subtitle, sticky } = props
+  const { placeholder, spacerSize, subtitle } = props
   const [isClearable] = useState(true)
-  const [value, setValue] = useState()
+  const [value] = useState()
   const [isOpen, setIsOpen] = useState(false)
   const [isSticky, setIsSticky] = useState(true)
   const headerRef = useRef()
@@ -66,15 +66,17 @@ export default function SearchBarArea(props: any) {
   return (
     <Fragment>
       <SearchBarSection>
+        <GreenCircleImage src='https://gareth-misc.s3.amazonaws.com/abstract/header-bg-green-circle.svg' />
         <EuiFlexGroup gutterSize='none' direction='column'>
           <EuiFlexItem>
             <EuiSpacer size={spacerSize} />
-            <EuiSpacer size='s' />
+            <EuiSpacer size='l' />
             <EuiTitle size='l'>
               <MainTitle>Elastic Documentation</MainTitle>
             </EuiTitle>
           </EuiFlexItem>
           {subTitle}
+          <EuiSpacer size='xl' />
           <EuiHideFor sizes={['xs', 's']}>
             <EuiSpacer size={spacerSize} />
           </EuiHideFor>
@@ -85,6 +87,8 @@ export default function SearchBarArea(props: any) {
           </EuiFlexItem>
         </EuiFlexGroup>
         <SuggestionSelect isOpen={isOpen} />
+        <BlueCircleImage src='https://gareth-misc.s3.amazonaws.com/abstract/header-bg-blue-circle.svg' />
+        <PinkCircleImage src='https://gareth-misc.s3.amazonaws.com/abstract/header-bg-pink-circle.svg' />
       </SearchBarSection>
 
       <MainSearch
@@ -111,10 +115,7 @@ SearchBarArea.defaultProps = {
 
 const SearchBarSection = styled.section`
   margin-top: 6.5rem;
-  background-color: ${(props: any) => props.theme.colours.light_primary};
-  background: url(https://gareth-misc.s3.amazonaws.com/docs-header-bg-default.png)
-    0 0 no-repeat;
-  background-size: 100% auto;
+  background-color: #0076CB;
   box-shadow: inset 0px -2px 2px rgba(200, 200, 200, 0.2);
 
   @media only screen and ${(props) => props.theme.mediaQueries.mediumScreens} {
@@ -168,9 +169,27 @@ const MainSearch = styled.header`
     height: 4rem;
     margin-top: 0.875rem;
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.11);
+    transition: none;
   }
 
   svg {
     margin-top: 1rem;
   }
+`
+
+const PinkCircleImage = styled.img`
+  position: absolute;
+  top: 5%;
+  right: 5%;
+`
+const BlueCircleImage = styled.img`
+  position: absolute;
+  top: 15%;
+  right: 15%;
+`
+
+const GreenCircleImage = styled.img`
+  position: absolute;
+  top: 5.6rem;
+  left: 0%;
 `

@@ -31,10 +31,9 @@ export default function DocCard(props: any) {
             </EuiFlexGroup>
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiTitle size='xs'>
-              <h4>{title}</h4>
-            </EuiTitle>
-            <EuiSpacer size='s' />
+            <EuiText style={{fontWeight:500}}>
+              <p>{title}</p>
+            </EuiText>
             <EuiText color='subdued' size='s'>
               <p>{excerpt}</p>
             </EuiText>
@@ -50,8 +49,7 @@ export default function DocCard(props: any) {
                 </EuiFlexItem>
               ))}
             </EuiFlexGroup>
-            <EuiSpacer size='s' />
-            <EuiHorizontalRule margin='xs' />
+            <EuiSpacer size='m' />
           </EuiFlexItem>
         </EuiFlexGroup>
       </SearchResult>
@@ -72,6 +70,7 @@ DocCard.defaultProps = {
 const SearchResult = styled.div`
   margin-top: -16px;
   padding: 0 ${(props) => props.theme.sizes.sizeS};
+  border-bottom: 1px solid ${(props:any) => props.theme.colours.light_lightShade};
   &:hover {
     cursor: pointer;
 

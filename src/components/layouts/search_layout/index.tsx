@@ -4,8 +4,6 @@ import styled from 'styled-components'
 import Header from '../../chrome/header'
 import Footer from '../../chrome/footer'
 import SearchBarArea from '../../chrome/search_bar'
-import ArticleSidebar from '../../chrome/sidebars/article'
-import { TOCData } from '../../../../data/tocData'
 
 import {
   EuiFlexGroup,
@@ -13,14 +11,13 @@ import {
   EuiPage,
   EuiPageContent,
   EuiPageContentBody,
-  EuiPageHeader,
   EuiPageSideBar,
   EuiPageBody,
   EuiSpacer,
-  EuiSideNav,
-  EuiSelect,
-  EuiText,
 } from '@elastic/eui'
+
+import SearchSidebar from '../../chrome/sidebars/search'
+import AdCard from '../../cards/ad_cards'
 
 type Props = {
   title: string
@@ -35,39 +32,16 @@ const ContentWrapper = styled.section`
     background: ${(props) => props.theme.text.default};
     color: ${(props) => props.theme.colours.light_emptyShade};
   }
-  `
+`
 
 const ArticleWrapper = styled.div`
   max-width: 94%;
 `
 
-const TOC = styled.aside`
-    position: sticky;
-    top: 9rem;
-
-  .euiSideNav {
-    position: sticky;
-    top: 2rem;
-  }
-  .euiSideNav__content {
-    background: white;
-    border: none;
-
-  }
-`
-
-export default class ArticleLayout extends Component<Props> {
+export default class SearchLayout extends Component<Props> {
   render() {
     const { title, pageBreadcrumbs } = this.props
-    let sideNav = <ArticleSidebar />
-
-    let OnThisPageNav = (
-      <Fragment>
-        <EuiSideNav
-          items={TOCData}
-        />
-      </Fragment>
-    )
+    let sideNav = <SearchSidebar />
 
     return (
       <Fragment>
@@ -98,34 +72,19 @@ export default class ArticleLayout extends Component<Props> {
                 <EuiPageContentBody restrictWidth>
                   <EuiFlexGroup gutterSize='xl' justifyContent='spaceBetween'>
                     <EuiFlexItem>
-                      <ArticleWrapper>
-                        <EuiFlexGroup
-                          justifyContent='spaceBetween'
-                          alignItems='center'>
-                          <EuiFlexItem grow={false}>
-                            <EuiText size='s' color='subdued'>
-                              Lasted updated: May 5, 2021
-                            </EuiText>
-                          </EuiFlexItem>
-                          <EuiFlexItem grow={false}>
-                            <EuiSelect
-                              options={[
-                                {
-                                  value: 'option_one',
-                                  text: 'Version: Latest',
-                                },
-                              ]}
-                            />
-                          </EuiFlexItem>
-                        </EuiFlexGroup>
-                        <EuiSpacer size='s' />
-                        <EuiPageHeader restrictWidth pageTitle={title} />
-                        <EuiSpacer size='xl'/>
-                        <EuiText>{this.props.children}</EuiText>
-                      </ArticleWrapper>
-                    </EuiFlexItem>
-                    <EuiFlexItem grow={false}>
-                      <TOC>{OnThisPageNav}</TOC>
+                      <EuiFlexGroup justifyContent='spaceBetween'>
+                        <EuiFlexItem>{this.props.children}</EuiFlexItem>
+                        <EuiFlexItem grow={false}>
+                          <EuiFlexGroup direction='column' gutterSize='xl'>
+                            <EuiFlexItem grow={false}>
+                              <AdCard title='Elastic Cloud' />
+                            </EuiFlexItem>
+                            <EuiFlexItem grow={false}>
+                              <AdCard title='Elastic Support' description='Get the answers you need from our team of experts. Available 24/7.' imgSrc='https://gareth-misc.s3.amazonaws.com/abstract/yellow-grey-support.svg' imgY='4rem' />
+                            </EuiFlexItem>
+                          </EuiFlexGroup>
+                        </EuiFlexItem>
+                      </EuiFlexGroup>
                     </EuiFlexItem>
                   </EuiFlexGroup>
                 </EuiPageContentBody>

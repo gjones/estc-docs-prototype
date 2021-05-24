@@ -8,7 +8,10 @@ import {
   EuiHeaderSectionItem,
   EuiHeaderLogo,
   EuiHeaderLinks,
+  EuiHeaderLink,
+  EuiHeaderSection,
 } from '@elastic/eui'
+import ElasticMark from './elastic_mark'
 type Props = {
   breadcrumbs: any
 }
@@ -19,11 +22,22 @@ export default function Header(props: Props) {
   return (
     <Fragment>
       <EuiHeader theme='dark' position='fixed'>
+      <EuiHeaderSection side='left'>
         <EuiHeaderSectionItem border='right'>
           <EuiHeaderLogo iconType='logoElastic' href='/'>
-            Elastic Docs
+            <ElasticMark />
           </EuiHeaderLogo>
+          </EuiHeaderSectionItem>
+          <EuiHeaderSectionItem>
+          <EuiHeaderLinks>
+            <EuiHeaderLink>Products</EuiHeaderLink>
+            <EuiHeaderLink>Customers</EuiHeaderLink>
+            <EuiHeaderLink>Learn</EuiHeaderLink>
+            <EuiHeaderLink>Company</EuiHeaderLink>
+            <EuiHeaderLink>Pricing</EuiHeaderLink>
+          </EuiHeaderLinks>
         </EuiHeaderSectionItem>
+        </EuiHeaderSection>
 
         <EuiHeaderLinks>
           <EuiButton fill color='ghost' size='s'>
