@@ -1,10 +1,10 @@
-import React, { Fragment, FunctionComponent } from 'react';
-import { EuiButton, EuiEmptyPrompt } from '@elastic/eui';
-import Link from 'next/link';
+import React, { Fragment, FunctionComponent } from 'react'
+import { EuiButton, EuiEmptyPrompt } from '@elastic/eui'
+import Link from 'next/link'
 
 const NotFoundPage: FunctionComponent = () => (
   <EuiEmptyPrompt
-    iconType="editorStrike"
+    iconType='editorStrike'
     title={<h2>Ack! There&apos;s nothing here.</h2>}
     body={
       <Fragment>
@@ -12,13 +12,13 @@ const NotFoundPage: FunctionComponent = () => (
       </Fragment>
     }
     actions={
-      <Link href="/">
-        <EuiButton color="primary" fill>
+      <Link href='/'>
+        <EuiButton color='primary' fill>
           Go Home
         </EuiButton>
       </Link>
     }
   />
-);
+)
 
-export default NotFoundPage;
+export default NotFoundPage
