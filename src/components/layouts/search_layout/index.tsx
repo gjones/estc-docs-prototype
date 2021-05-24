@@ -25,15 +25,6 @@ type Props = {
   children: any
 }
 
-const ContentWrapper = styled.section`
-  min-height: 80vh;
-
-  pre {
-    background: ${(props) => props.theme.text.default};
-    color: ${(props) => props.theme.colours.light_emptyShade};
-  }
-`
-
 export default class SearchLayout extends Component<Props> {
   render() {
     const { title, pageBreadcrumbs } = this.props
@@ -98,3 +89,12 @@ export default class SearchLayout extends Component<Props> {
     )
   }
 }
+
+const ContentWrapper = styled.section`
+  min-height: 80vh;
+
+  pre {
+    background: ${(props: any) => props.theme.text.default};
+    color: ${(props: any) => props.theme.colours.light_emptyShade};
+  }
+`

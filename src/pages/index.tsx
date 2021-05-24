@@ -118,16 +118,15 @@ const Index: FunctionComponent = () => (
       <Container>
         <EuiFlexGroup direction='column'>
           <EuiFlexItem>
-            <EuiFlexGroup direction='column' gutterSize='xl'>
+            <EuiFlexGroup direction='column' gutterSize='l'>
               <EuiSpacer size='m' />
               <EuiFlexItem>
                 <EuiTitle size='s'>
                   <h3>May&lsquo;s popular content</h3>
                 </EuiTitle>
-                <EuiSpacer size='xs' />
               </EuiFlexItem>
               <EuiFlexItem>
-                <EuiFlexGrid columns={2} gutterSize='xl'>
+                <EuiFlexGrid columns={2} gutterSize='none'>
                   <EuiFlexItem>
                     <DocCard index='1000' />
                   </EuiFlexItem>

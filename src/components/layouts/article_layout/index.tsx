@@ -28,33 +28,6 @@ type Props = {
   children: any
 }
 
-const ContentWrapper = styled.section`
-  min-height: 80vh;
-
-  pre {
-    background: ${(props) => props.theme.text.default};
-    color: ${(props) => props.theme.colours.light_emptyShade};
-  }
-`
-
-const ArticleWrapper = styled.div`
-  max-width: 94%;
-`
-
-const TOC = styled.aside`
-  position: sticky;
-  top: 9rem;
-
-  .euiSideNav {
-    position: sticky;
-    top: 2rem;
-  }
-  .euiSideNav__content {
-    background: white;
-    border: none;
-  }
-`
-
 export default class ArticleLayout extends Component<Props> {
   render() {
     const { title, pageBreadcrumbs } = this.props
@@ -135,3 +108,31 @@ export default class ArticleLayout extends Component<Props> {
     )
   }
 }
+
+const ContentWrapper = styled.section`
+  min-height: 80vh;
+
+  pre {
+    background: ${(props: any) => props.theme.text.default};
+    color: ${(props: any) => props.theme.colours.light_emptyShade};
+  }
+`
+
+const ArticleWrapper = styled.div`
+  max-width: 95.5%;
+  margin: 0 auto;
+`
+
+const TOC = styled.aside`
+  position: sticky;
+  top: 9rem;
+
+  .euiSideNav {
+    position: sticky;
+    top: 2rem;
+  }
+  .euiSideNav__content {
+    background: white;
+    border: none;
+  }
+`

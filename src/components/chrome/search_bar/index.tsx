@@ -184,7 +184,8 @@ const PinkSlide = keyframes`
 
 const PinkCircleImage = styled.img`
   position: absolute;
-  transform-origin: 5% 5%;
+  top: 5%;
+  right: 5%;
   transition: transform 1s ease-in-out 0s;
   animation-duration: 4s;
   animation-delay: 4.5s;

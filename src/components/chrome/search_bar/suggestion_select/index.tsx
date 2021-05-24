@@ -64,6 +64,7 @@ export default function SuggestionSelect(props: any) {
                 <EuiLink>Clear</EuiLink>
               </EuiFlexItem>
             </EuiFlexGroup>
+            <EuiSpacer size='s' />
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <SelectItem />

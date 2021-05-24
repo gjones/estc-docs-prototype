@@ -6,7 +6,6 @@ import {
   EuiFlexGrid,
   EuiFlexItem,
   EuiHeaderBreadcrumbs,
-  EuiSpacer,
   EuiText,
 } from '@elastic/eui'
 
@@ -38,8 +37,7 @@ const DocsIndex = ({ allPostsData }) => {
             </EuiText>
           </EuiFlexItem>
           <EuiFlexItem>
-            <EuiSpacer size='xl' />
-            <EuiFlexGrid gutterSize='xl' columns={1}>
+            <EuiFlexGrid gutterSize='none' columns={1}>
               {allPostsData.map(
                 ({ slug, date, title, excerpt, icon, tags, index }) => (
                   <EuiFlexItem key={index}>

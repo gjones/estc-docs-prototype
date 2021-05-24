@@ -55,6 +55,12 @@ const SearchResult = styled.div`
   margin-top: -16px;
   padding: 0 ${(props) => props.theme.sizes.sizeM};
   border-bottom: 1px solid ${(props) => props.theme.colours.light_lightShade};
+
+  &:first-of-type {
+    border-radius-top-left: ${(props: any) => props.theme.steps.borderRadius};
+    border-radius-top-right: ${(props: any) => props.theme.steps.borderRadius};
+  }
+
   &:hover {
     cursor: pointer;
     background: ${(props) => props.theme.colours.light_lightestShade};
@@ -64,6 +70,7 @@ const SearchResult = styled.div`
       color: ${(props) => props.theme.text.link};
     }
   }
+
   .euiPanel {
     padding: 8px;
   }

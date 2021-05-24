@@ -18,6 +18,7 @@ export default function DocCard(props: any) {
   return (
     <Link key={slug} href='/docs/[slug]' as={`/docs/${slug}`}>
       <SearchResult>
+        <EuiSpacer size='m' />
         <EuiFlexGroup>
           <EuiFlexItem grow={false}>
             <EuiFlexGroup direction='column'>
@@ -59,19 +60,23 @@ DocCard.defaultProps = {
   icon: 'logoElasticsearch',
   title: 'Ingest data with Node.js on Elasticsearch',
   excerpt:
-    'This guide tells you how to get started with: Securely connecting to Elasticsearch Service with Node.js. Ingesting data into your deployment from...',
+    'This guide tells you how to get started with: Securely connecting to Elasticsearch Service with Node.js. Ingesting data into your deployment...',
   date: 'December 17,2020',
   tags: ['ingesting data', 'nodejs'],
   slug: 'ingest-data-with-nodejs',
 }
 
 const SearchResult = styled.div`
-  margin-top: -16px;
-  padding: 0 ${(props) => props.theme.sizes.sizeS};
+  padding: ${(props) => props.theme.sizes.sizeM};
   border-bottom: 1px solid
-    ${(props: any) => props.theme.colours.light_lightShade};
+    ${(props: any) => props.theme.colours.light_lightestShade};
+  border-radius: 4px;
+  max-width: 96%;
+
   &:hover {
     cursor: pointer;
+    background: ${(props) => props.theme.colours.light_lightestShade};
+    transition: all ease-in-out 0.2s;
 
     .euiTitle {
       color: ${(props) => props.theme.text.link};
@@ -79,6 +84,6 @@ const SearchResult = styled.div`
     }
   }
   .euiPanel {
-    padding: 8px;
+    padding: 4px;
   }
 `
