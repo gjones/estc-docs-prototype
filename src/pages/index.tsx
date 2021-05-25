@@ -122,7 +122,7 @@ const Index: FunctionComponent = () => (
               <EuiSpacer size='m' />
               <EuiFlexItem>
                 <EuiTitle size='s'>
-                  <h3>May&lsquo;s popular content</h3>
+                  <h3>Popular content in May</h3>
                 </EuiTitle>
               </EuiFlexItem>
               <EuiFlexItem>

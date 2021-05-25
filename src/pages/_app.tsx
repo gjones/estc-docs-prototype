@@ -8,8 +8,9 @@ import '../styles/global.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [isMounted, setIsMounted] = useState(false)
-  const darkMode = useDarkMode(true)
-  const theme = darkMode.value ? lightTheme : darkTheme
+  // const darkMode = useDarkMode(true)
+  // const theme = darkMode.value ? lightTheme : darkTheme
+  const theme = lightTheme
 
   useEffect(() => {
     setIsMounted(true)
