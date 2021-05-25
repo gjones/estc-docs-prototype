@@ -1,8 +1,9 @@
 import { AppProps } from 'next/app'
 import React, { useState, useEffect } from 'react'
-import useDarkMode from 'use-dark-mode'
+// import useDarkMode from 'use-dark-mode'
 import { ThemeProvider } from 'styled-components'
-import { lightTheme, darkTheme } from '../components/theme'
+//import { lightTheme, darkTheme } from '../components/theme'
+import { lightTheme } from '../components/theme'
 
 import '../styles/global.css'
 
